@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 0
+    path: Assets/TDTK/Scenes/TDTK_DemoMenu.unity
+  - enabled: 0
+    path: Assets/TDTK/Scenes/TDTK_FixedPath.unity
+  - enabled: 0
+    path: Assets/TDTK/Scenes/TDTK_MultiPlatform.unity
+  - enabled: 0
+    path: Assets/TDTK/Scenes/TDTK_MultiPlatformH.unity
+  - enabled: 0
+    path: Assets/TDTK/Scenes/TDTK_MultiPlatformLoop.unity
+  - enabled: 0
+    path: Assets/TDTK/Scenes/TDTK_Platform_Terrain1.unity
+  - enabled: 0
+    path: Assets/TDTK/Scenes/TDTK_Platform_Terrain2.unity
+  - enabled: 0
+    path: Assets/TDTK/Scenes/TDTK_ShapedPlatform.unity
+  - enabled: 0
+    path: Assets/TDTK/Scenes/ForMobile_TestedOnGalaxy4S/TDTK_DemoMenu.unity
+  - enabled: 0
+    path: Assets/TDTK/Scenes/ForMobile_TestedOnGalaxy4S/TDTK_FixedPath.unity
+  - enabled: 0
+    path: Assets/TDTK/Scenes/ForMobile_TestedOnGalaxy4S/TDTK_MultiPlatform.unity
+  - enabled: 0
+    path: Assets/TDTK/Scenes/ForMobile_TestedOnGalaxy4S/TDTK_MultiPlatformH.unity
+  - enabled: 0
+    path: Assets/TDTK/Scenes/ForMobile_TestedOnGalaxy4S/TDTK_MultiPlatformLoop.unity
+  - enabled: 0
+    path: Assets/TDTK/Scenes/ForMobile_TestedOnGalaxy4S/TDTK_Platform_Terrain1.unity
+  - enabled: 0
+    path: Assets/TDTK/Scenes/ForMobile_TestedOnGalaxy4S/TDTK_Platform_Terrain2.unity
+  - enabled: 0
+    path: Assets/TDTK/Scenes/ForMobile_TestedOnGalaxy4S/TDTK_ShapedPlatform.unity
+  - enabled: 0
+    path: Assets/3DForgeScene/3DForgeDemo.unity
+  - enabled: 1
+    path: Assets/TCG/EditDeckScene.unity
+  - enabled: 1
+    path: Assets/TCG/GameScene.unity
+  - enabled: 1
+    path: Assets/TCG/LobbyScene.unity
+  - enabled: 1
+    path: Assets/TCG/MainMenuScene.unity
