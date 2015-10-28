@@ -12,6 +12,7 @@ GameObject:
   - 65: {fileID: 6533886}
   - 23: {fileID: 2372556}
   - 114: {fileID: 11465096}
+  - 114: {fileID: 11435798}
   m_Layer: 0
   m_Name: New Prefab
   m_TagString: Untagged
@@ -74,6 +75,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &11435798
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 135968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12216f50e5f15564092748c20dd75908, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ready_to_move: 0
+  duration: 2
 --- !u!114 &11465096
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -114,7 +128,15 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: ready_to_move
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: duration
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 135968}
