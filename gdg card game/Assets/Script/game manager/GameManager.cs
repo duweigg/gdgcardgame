@@ -31,7 +31,8 @@ public class GameManager : MonoBehaviour {
 	public Stats selectedScript;
 	public TapToMove moveScript;
 	public int t;
-
+	public Stats targetScript;
+	public bool isAttacking;
 
 	//attacking/healing
 	GameObject Attacker;
@@ -65,8 +66,10 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void selectChar(){
+		isAttacking = false;
+
 		//selects character
-		if (Input.GetMouseButtonDown (0)) {
+		if (selected==null && Input.GetMouseButtonDown (0)) {
 			Ray ray1 = cam.ScreenPointToRay (Input.mousePosition);
 			if (Physics.Raycast (ray1.origin, ray1.direction,out hit, 300, layer.value)){
 				Debug.Log ("Hit!");
@@ -85,8 +88,13 @@ public class GameManager : MonoBehaviour {
 
 			}
 		}
-	
-		move ();
+
+		attack ();
+
+		if (!isAttacking) {
+			move ();
+		}
+
 }
 	
 	void move(){
@@ -96,13 +104,31 @@ public class GameManager : MonoBehaviour {
 					Ray ray1 = cam.ScreenPointToRay (Input.mousePosition);
 					if (Physics.Raycast (ray1.origin, ray1.direction,out hit, 300, layermask)){
 						Debug.Log ("Moving!");
+						selectedScript.hasMoved= true;
 						moveScript = selected.GetComponent<TapToMove>();
 						moveScript.ready_to_move=true;
-						selectedScript.hasMoved= true;
 					}
 				}
 			}
 		}
+	}
+
+	
+	void attack(){
+		if (selectedScript != null&&selected!=null) {
+			if (Input.GetMouseButtonDown(0)&&selectedScript.hasAttacked==false&&t!=Time.frameCount){
+				Ray ray2 = cam.ScreenPointToRay (Input.mousePosition);
+				if (Physics.Raycast (ray2.origin, ray2.direction, out hit, 300, layer.value)){
+					Debug.Log ("Attacking!");
+					isAttacking=true;
+					Target = hit.collider.gameObject;
+					targetScript=Target.GetComponent<Stats>();
+					selectedScript.hit ();
+					targetScript.debugattack = true;
+				}
+			}
+		}
+
 	}
 
 	void shaffle_card(){

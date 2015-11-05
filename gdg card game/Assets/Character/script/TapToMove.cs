@@ -13,6 +13,7 @@ public class TapToMove : MonoBehaviour
     public float duration = 50.0f;
     //vertical position of the gameobject
     private float yAxis;
+	public bool isMoving=false;
 
     void Start()
     {
@@ -23,9 +24,8 @@ public class TapToMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         //check if the screen is touched / clicked   
-        if ((ready_to_move &&
+        if ((ready_to_move && 
             (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) || (Input.GetMouseButtonDown(0))))
         {
             //declare a variable of RaycastHit struct
@@ -41,7 +41,7 @@ public class TapToMove : MonoBehaviour
 #endif
 
             //Check if the ray hits any collider
-            if (Physics.Raycast(ray, out hit))
+            if (!isMoving && Physics.Raycast(ray, out hit))
             {
                 //set a flag to indicate to move the gameobject
                 flag = true;
@@ -60,6 +60,7 @@ public class TapToMove : MonoBehaviour
             gameObject.transform.position =
                 Vector3.Lerp(gameObject.transform.position, endPoint, 1 /
                 (duration * (Vector3.Distance(gameObject.transform.position, endPoint))));
+			isMoving=true;
         }
         //set the movement indicator flag to false if the endPoint and current gameobject position are equal
         else if (flag && Mathf.Approximately(gameObject.transform.position.magnitude, endPoint.magnitude))
@@ -67,6 +68,7 @@ public class TapToMove : MonoBehaviour
             flag = false;
             Debug.Log("I am here");
             ready_to_move = !ready_to_move;
+			isMoving=false;
         }
 
     }
