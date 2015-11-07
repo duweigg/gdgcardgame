@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour {
 	public int t;
 	public Stats targetScript;
 	public bool isAttacking;
+	int layermask2 =( 1 << 11) | (1 << 12);
 
 	//attacking/healing
 	GameObject Attacker;
@@ -69,6 +70,7 @@ public class GameManager : MonoBehaviour {
 		isAttacking = false;
 
 		//selects character
+
 		if (selected==null && Input.GetMouseButtonDown (0)) {
 			Ray ray1 = cam.ScreenPointToRay (Input.mousePosition);
 			if (Physics.Raycast (ray1.origin, ray1.direction,out hit, 300, layer.value)){
@@ -85,15 +87,16 @@ public class GameManager : MonoBehaviour {
 			if (Physics.Raycast (ray2.origin, ray2.direction,out hit, 300, layermask)){
 				Debug.Log ("Reset!");
 				selectedScript.isSelected = false;
+				selected=null;
 
 			}
 		}
 
 		attack ();
 
-		if (!isAttacking) {
+		if (!isAttacking)
 			move ();
-		}
+	
 
 }
 	
@@ -118,7 +121,7 @@ public class GameManager : MonoBehaviour {
 		if (selectedScript != null&&selected!=null) {
 			if (Input.GetMouseButtonDown(0)&&selectedScript.hasAttacked==false&&t!=Time.frameCount){
 				Ray ray2 = cam.ScreenPointToRay (Input.mousePosition);
-				if (Physics.Raycast (ray2.origin, ray2.direction, out hit, 300, layer.value)){
+				if (Physics.Raycast (ray2.origin, ray2.direction, out hit, 300, layermask2)){
 					Debug.Log ("Attacking!");
 					isAttacking=true;
 					Target = hit.collider.gameObject;

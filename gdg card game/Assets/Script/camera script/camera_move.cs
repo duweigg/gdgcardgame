@@ -8,9 +8,10 @@ public class camera_move : MonoBehaviour {
 	void Start () {
 	
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
+		if (!Input.GetKey("r")){
 		if (Input.mousePosition.x < distance) {
 			this.transform.Translate (-speed , 0 , 0, Space.World);
 		}
@@ -22,6 +23,7 @@ public class camera_move : MonoBehaviour {
 		}
 		if (Input.mousePosition.y > Screen.height - distance) {
 			this.transform.Translate (0 , 0,  speed , Space.World);
+		}
 		}
 	
 	}
