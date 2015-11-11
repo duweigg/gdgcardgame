@@ -18,6 +18,14 @@ public class turns_manager : MonoBehaviour {
 	public GameObject Monster4;
 	public GameObject Monster5;
 
+	public Stats[] StatsLists; 
+	public Stats[] Stats2;
+	public GameObject[] Classlist;
+	public GameObject[] EnemyClasslist;
+	public AI[] Enemylist;
+	public int length;
+	public int mlength;
+	private int i;
 
 	GameManager _manager;
 
@@ -32,7 +40,7 @@ public class turns_manager : MonoBehaviour {
 	public	void endturn(){
 		turn_count++;
 	
-
+		_manager.resetSelected ();
 
 
 
@@ -44,12 +52,38 @@ public class turns_manager : MonoBehaviour {
 		_manager.drawcard ();
 
 
+		//places all Stats in an array
+		length = 0;
+		StatsLists = new Stats[20];
+		foreach (GameObject CharClass in Classlist) {
+			Stats2 = CharClass.GetComponentsInChildren<Stats> ();
+			Stats2.CopyTo (StatsLists, length);
+			length += Stats2.Length;
+		}
+		Stats2=new Stats[0];
+		//resets all booleans to intital
+		foreach (Stats script in StatsLists) {
+			if(script!=null){
+				script.reset();
+			}
+		}
 
 	}
 
-	public void startenemyturn(){
+	void startenemyturn(){
 		//  AI proccess
+		length = 0;
+		Enemylist = new AI[20];
+		foreach (GameObject EnemyClass in EnemyClasslist){
+			(EnemyClass.GetComponentsInChildren<AI> ()).CopyTo (Enemylist, length);
+			length+= (EnemyClass.GetComponentsInChildren<AI> ()).Length;
+			mlength=length;
+		}
 
+		foreach (AI Enemy in Enemylist) {
+			Enemy.AIMove();
+			Enemy.AIAttack();
+		}
 
 		endenemyturn ();
 	}
@@ -57,7 +91,7 @@ public class turns_manager : MonoBehaviour {
 	public void endenemyturn(){
 		turn_count++;
 
-		if (turn_count % 4 == 0) {
+		if (turn_count % 4 == 0&&mlength<19) {
 			Vector2 randomVector = Random.insideUnitCircle*15;
 			position = new Vector3 (randomVector.x,0,randomVector.y);
 			position+= boss.transform.position;

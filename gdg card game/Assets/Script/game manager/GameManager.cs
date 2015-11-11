@@ -33,6 +33,8 @@ public class GameManager : MonoBehaviour {
 	public int t;
 	public Stats targetScript;
 	public bool isAttacking;
+	public bool isMoving;
+	int unitlayers = 1 << 11 | 1 << 12;
 
 	//attacking/healing
 	GameObject Attacker;
@@ -66,6 +68,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void selectChar(){
+		if(_manager.turn_count%2==0){
 		isAttacking = false;
 
 		//selects character
@@ -76,26 +79,38 @@ public class GameManager : MonoBehaviour {
 				selected= hit.collider.gameObject;
 				selectedScript = selected.GetComponent<Stats>();
 				selectedScript.isSelected = true;
+					if (selectedScript.turnEnded){
+						resetSelected();
+						Debug.Log ("Turn Ended. Reset.");
+					}
 				t=Time.frameCount;
 			}
 		}
 		//deselects character
-		if (Input.GetMouseButtonDown (1)) {
-			Ray ray2 = cam.ScreenPointToRay (Input.mousePosition);
-			if (Physics.Raycast (ray2.origin, ray2.direction,out hit, 300, layermask)){
+		if (Input.GetMouseButtonDown (1)&&selectedScript!=null) {
 				Debug.Log ("Reset!");
 				selectedScript.isSelected = false;
-
-			}
+				selected = null;
+				selectedScript=null;
+			
 		}
 
-		attack ();
+		if (selected != null) {
+			moveScript = selected.GetComponent<TapToMove> ();
+			isMoving = moveScript.isMoving;
+		} else {
+			isMoving=false;
+		}
+
+		if (!isMoving) {
+			attack ();
+		}
 
 		if (!isAttacking) {
 			move ();
 		}
-
-}
+		}
+	}
 	
 	void move(){
 		if (selectedScript != null) {
@@ -118,17 +133,29 @@ public class GameManager : MonoBehaviour {
 		if (selectedScript != null&&selected!=null) {
 			if (Input.GetMouseButtonDown(0)&&selectedScript.hasAttacked==false&&t!=Time.frameCount){
 				Ray ray2 = cam.ScreenPointToRay (Input.mousePosition);
-				if (Physics.Raycast (ray2.origin, ray2.direction, out hit, 300, layer.value)){
+				if (Physics.Raycast (ray2.origin, ray2.direction, out hit, 300, unitlayers)){
 					Debug.Log ("Attacking!");
 					isAttacking=true;
 					Target = hit.collider.gameObject;
 					targetScript=Target.GetComponent<Stats>();
 					selectedScript.hit ();
-					targetScript.debugattack = true;
+					if (targetScript.isAttacked()){
+						selectedScript.hasMoved=true;
+						resetSelected();
+					}else{
+						selectedScript.hasAttacked = false;
+					}
+
 				}
 			}
 		}
 
+	}
+
+	//resets selected units to null
+	public void resetSelected(){
+		selected = null;
+		selectedScript = null;
 	}
 
 	void shaffle_card(){

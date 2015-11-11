@@ -35,7 +35,7 @@ public class Stats : MonoBehaviour {
 	public bool debugheal = false;
 
 	public bool isSelected;
-	
+
 	void Start () {
 		//Do we reduce the summon points here or in game controller?
 		//Searches for the class of the new unit
@@ -112,15 +112,16 @@ public class Stats : MonoBehaviour {
 		//check for armor goes here
 		return finaldamage;
 	}
-	
+
 	//function for when unit is attacked
-	void isAttacked(){
+	public bool isAttacked(){
 		//finds attacker
 		attacker = GameObject.FindWithTag ("Hitting");
 		
 		if (attacker == null) {
 			Debug.Log ("Cannot find Attacker");
-			return;
+			resetAttacker ();
+			return false;
 		}
 		
 		//gets script from attacker
@@ -145,17 +146,19 @@ public class Stats : MonoBehaviour {
 				if (currentattack<0){
 					undoSelection();
 					Debug.Log ("Healing Enemies!");
-					return;
+					resetAttacker();
+					return false;
 				}
 			}
 			if (attackerIsEnemy==isEnemy){
 				if (currentattack>=0){
 					undoSelection();
 					Debug.Log ("Attacking allies/self!");
-					return;
+					resetAttacker();
+					return false;
 				}
 			}
-			
+
 			//reduces damage by armor
 			if (currentattack >=0){
 				currentattack-=armor;
@@ -176,10 +179,13 @@ public class Stats : MonoBehaviour {
 			//Undo the attacking section so the unit can be selected again
 			attackScript.undoSelection ();
 			Debug.Log ("Too far. Attacker reset");
+			resetAttacker();
+			return false;
 		}
 		
 		//reset attacker
 		resetAttacker ();
+		return true;
 	}
 	
 	public float attackingRange(){
@@ -203,6 +209,14 @@ public class Stats : MonoBehaviour {
 	//function for showing character is unselectable
 	void greyOut(){
 		//change material here?
+	}
+
+	//reset function
+	public void reset(){
+		hasAttacked = false;
+		hasMoved = false;
+		turnEnded = false;
+		isSelected = false;
 	}
 	
 	//death function
