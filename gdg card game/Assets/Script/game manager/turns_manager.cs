@@ -79,10 +79,12 @@ public class turns_manager : MonoBehaviour {
 			length+= (EnemyClass.GetComponentsInChildren<AI> ()).Length;
 			mlength=length;
 		}
-
+		
 		foreach (AI Enemy in Enemylist) {
+			if (Enemy!=null){
 			Enemy.AIMove();
 			Enemy.AIAttack();
+			}
 		}
 
 		endenemyturn ();
