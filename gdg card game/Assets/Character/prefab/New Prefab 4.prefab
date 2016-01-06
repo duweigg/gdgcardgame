@@ -11,7 +11,9 @@ GameObject:
   - 33: {fileID: 3339954}
   - 136: {fileID: 13651358}
   - 23: {fileID: 2324632}
-  m_Layer: 0
+  - 114: {fileID: 11486334}
+  - 114: {fileID: 11496718}
+  m_Layer: 12
   m_Name: New Prefab 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,7 +27,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 107568}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 18.6000004, y: -2, z: 152.75}
+  m_LocalPosition: {x: 18.6, y: -2, z: 152.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -48,8 +50,10 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_AutoUVMaxDistance: .5
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
@@ -61,6 +65,63 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 107568}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &11486334
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 107568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e03c023ca1f15d945b4b8b7bd3392d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tm: {fileID: 0}
+  mindist: 0
+  closest: {fileID: 0}
+  triggered: 0
+  step: 0
+  speed: 0
+  targetpos: {x: 0, y: 0, z: 0}
+  maxdist: 0
+  attackdist: 0
+  selectedscript: {fileID: 0}
+  dist: 0
+--- !u!114 &11496718
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 107568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e2a8eec17b692843b8a6dcdfa54c1b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 0
+  maxhp: 0
+  attack: 0
+  cost: 0
+  currentattack: 0
+  critchance: 0
+  attackrange: 0
+  distance: 0
+  attackerRange: 0
+  finaldamage: 0
+  armor: 0
+  healval: 0
+  randomroll: 0
+  isEnemy: 0
+  attackerIsEnemy: 0
+  hasAttacked: 0
+  hasMoved: 0
+  turnEnded: 0
+  attacker: {fileID: 0}
+  charClass: {fileID: 0}
+  debugattack: 0
+  debughit: 0
+  debugheal: 0
+  isSelected: 0
 --- !u!136 &13651358
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -70,7 +131,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: .5
+  m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -80,7 +141,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 107568}

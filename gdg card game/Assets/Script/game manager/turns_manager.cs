@@ -43,8 +43,7 @@ public class turns_manager : MonoBehaviour {
 		_manager.resetSelected ();
 
 
-
-		startenemyturn ();
+        StartCoroutine(startenemyturn());
 	}
 
 	public void startturn(){
@@ -52,14 +51,8 @@ public class turns_manager : MonoBehaviour {
 		_manager.drawcard ();
 
 
-		//places all Stats in an array
-		length = 0;
-		StatsLists = new Stats[20];
-		foreach (GameObject CharClass in Classlist) {
-			Stats2 = CharClass.GetComponentsInChildren<Stats> ();
-			Stats2.CopyTo (StatsLists, length);
-			length += Stats2.Length;
-		}
+        //places all Stats in an array
+        characterCount();
 		Stats2=new Stats[0];
 		//resets all booleans to intital
 		foreach (Stats script in StatsLists) {
@@ -70,8 +63,19 @@ public class turns_manager : MonoBehaviour {
 
 	}
 
-	void startenemyturn(){
-		//  AI proccess
+    public void characterCount() {
+        length = 0;
+        StatsLists = new Stats[20];
+        foreach (GameObject CharClass in Classlist) {
+            Stats2 = CharClass.GetComponentsInChildren<Stats>();
+            Stats2.CopyTo(StatsLists, length);
+            length += Stats2.Length;
+        }
+    }
+
+
+	IEnumerator startenemyturn(){
+		//  AI process
 		length = 0;
 		Enemylist = new AI[20];
 		foreach (GameObject EnemyClass in EnemyClasslist){
@@ -81,9 +85,11 @@ public class turns_manager : MonoBehaviour {
 		}
 		
 		foreach (AI Enemy in Enemylist) {
-			if (Enemy!=null){
-			Enemy.AIMove();
-			Enemy.AIAttack();
+            if (Enemy!=null){
+                yield return StartCoroutine (Enemy.AIMove());
+                Debug.Log("Move");
+			    Enemy.AIAttack();
+                Debug.Log("Attack");
 			}
 		}
 

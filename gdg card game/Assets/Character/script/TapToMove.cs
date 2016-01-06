@@ -49,7 +49,9 @@ public class TapToMove : MonoBehaviour
                 endPoint = hit.point;
                 //as we do not want to change the y axis value based on touch position, reset it to original y axis value
                 endPoint.y = yAxis;
-                Debug.Log(endPoint);
+                if (ready_to_move == true) {
+                    Debug.Log(endPoint);
+                }
             }
 
         }

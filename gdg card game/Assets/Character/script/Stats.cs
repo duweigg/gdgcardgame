@@ -28,6 +28,7 @@ public class Stats : MonoBehaviour {
 	
 	public GameObject attacker;
 	public GameObject charClass;
+    public turns_manager tm;
 	
 	//testing tool for generating hits on character
 	public bool debugattack = false;
@@ -49,6 +50,7 @@ public class Stats : MonoBehaviour {
 		attackrange = statScript.attackRange ();
 		armor = statScript.armor();
 		healval = statScript.heal ();
+        tm = FindObjectOfType<turns_manager>();
 	}
 	
 	void Update () {
@@ -221,7 +223,10 @@ public class Stats : MonoBehaviour {
 	
 	//death function
 	void death(){
-		//play death animation?
-		Destroy (this.gameObject);
-	}
+        //play death animation?
+        transform.parent = null;
+        tm.characterCount();
+        Destroy (this.gameObject);
+        
+    }
 }
