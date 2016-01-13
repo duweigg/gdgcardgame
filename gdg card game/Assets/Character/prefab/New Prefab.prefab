@@ -13,7 +13,7 @@ GameObject:
   - 23: {fileID: 2372556}
   - 114: {fileID: 11465096}
   - 114: {fileID: 11435798}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: New Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50,8 +50,10 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_AutoUVMaxDistance: .5
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
@@ -88,6 +90,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ready_to_move: 0
   duration: 2
+  isMoving: 0
 --- !u!114 &11465096
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -119,9 +122,11 @@ MonoBehaviour:
   turnEnded: 0
   attacker: {fileID: 0}
   charClass: {fileID: 0}
+  tm: {fileID: 0}
   debugattack: 0
   debughit: 0
   debugheal: 0
+  isSelected: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -136,6 +141,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: duration
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

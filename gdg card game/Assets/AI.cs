@@ -31,7 +31,6 @@ public class AI : MonoBehaviour {
     }
 
     public IEnumerator AIMove() {
-        if ()
         //Find closest Unit
         mindist = Vector3.Distance(transform.position, tm.StatsLists[0].gameObject.transform.position);
         closest = tm.StatsLists[0];

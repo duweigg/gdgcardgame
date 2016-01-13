@@ -26,6 +26,7 @@ public class turns_manager : MonoBehaviour {
 	public int length;
 	public int mlength;
 	private int i;
+    public int j;
 
 	GameManager _manager;
 
@@ -85,19 +86,31 @@ public class turns_manager : MonoBehaviour {
 		}
 		
 		foreach (AI Enemy in Enemylist) {
-            if (Enemy!=null){
+            if (Enemy!=null&&StatsLists[0]!=null){
                 yield return StartCoroutine (Enemy.AIMove());
-                Debug.Log("Move");
 			    Enemy.AIAttack();
                 Debug.Log("Attack");
-			}
+            }
 		}
-
 		endenemyturn ();
 	}
 
 	public void endenemyturn(){
 		turn_count++;
+
+        Debug.Log("Test");
+
+        j = 0;
+
+        for (i = 0; i < 20 && j<1; i++) {
+            if (StatsLists[i] != null) {
+                j++;
+            }
+        }
+
+        if (j!=1) {
+            gameOver();
+        }
 
 		if (turn_count % 4 == 0&&mlength<19) {
 			Vector2 randomVector = Random.insideUnitCircle*15;
@@ -142,7 +155,9 @@ public class turns_manager : MonoBehaviour {
 
 	}
 
-
+    void gameOver() {
+        Debug.Log("Game Over!");
+    }
 
 
 
@@ -153,9 +168,9 @@ public class turns_manager : MonoBehaviour {
 		startturn ();
 
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
+    // Update is called once per frame
+    void Update() {
+        
+    }
 }

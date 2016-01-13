@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour {
 	public GameObject selected;
 	public LayerMask layer;
 	public int turn_count;
-	turns_manager _manager;
+	public turns_manager _manager;
 	public Stats selectedScript;
 	public TapToMove moveScript;
 	public int t;
@@ -35,6 +35,9 @@ public class GameManager : MonoBehaviour {
 	public bool isAttacking;
 	public bool isMoving;
 	int unitlayers = 1 << 11 | 1 << 12;
+
+    public float moveDistance;
+    public Vector3 hitpoint;
 
 	//attacking/healing
 	GameObject Attacker;
@@ -118,10 +121,17 @@ public class GameManager : MonoBehaviour {
 				if (Input.GetMouseButtonDown(0)&&selectedScript.hasMoved==false){
 					Ray ray1 = cam.ScreenPointToRay (Input.mousePosition);
 					if (Physics.Raycast (ray1.origin, ray1.direction,out hit, 300, layermask)){
-						Debug.Log ("Moving!");
-						selectedScript.hasMoved= true;
-						moveScript = selected.GetComponent<TapToMove>();
-						moveScript.ready_to_move=true;
+                        hitpoint = hit.point;
+                        moveDistance = Vector3.Distance(hitpoint, selectedScript.transform.position);
+                        if (moveDistance < 15) {
+                            Debug.Log("Moving!");
+                            selectedScript.hasMoved = true;
+                            moveScript = selected.GetComponent<TapToMove>();
+                            moveScript.ready_to_move = true;
+                        }
+                        else {
+                            Debug.Log("Too Far!");
+                        }
 					}
 				}
 			}
@@ -194,8 +204,5 @@ public class GameManager : MonoBehaviour {
 		if (turn_count % 2 == 0) {
 			selectChar ();
 		}
-
-
-
 	}
 }
