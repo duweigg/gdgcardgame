@@ -148,6 +148,21 @@ public class turns_manager : MonoBehaviour {
 		startturn ();
 	}
 
+    public void checkEnd() {
+        i = 0;
+        j = 0;
+        foreach (Stats Stat in StatsLists) {
+            if (Stat != null) {
+                i++;
+                if (Stat.turnEnded == true) {
+                    j++;
+                }
+            }
+        }
+        if (i == j) {
+            endturn();
+        }
+    }
 
 	void drawcard (){
 

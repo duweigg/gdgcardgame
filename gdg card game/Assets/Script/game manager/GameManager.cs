@@ -38,6 +38,8 @@ public class GameManager : MonoBehaviour {
 
     public float moveDistance;
     public Vector3 hitpoint;
+    public float dist;
+    public float maxMove;
 
 	//attacking/healing
 	GameObject Attacker;
@@ -75,7 +77,8 @@ public class GameManager : MonoBehaviour {
 		isAttacking = false;
 
 		//selects character
-		if (selected==null && Input.GetMouseButtonDown (0)) {
+        //need to add another condition here to allow heals again
+		if (Input.GetMouseButtonDown (0)) {
 			Ray ray1 = cam.ScreenPointToRay (Input.mousePosition);
 			if (Physics.Raycast (ray1.origin, ray1.direction,out hit, 300, layer.value)){
 				Debug.Log ("Hit!");
@@ -114,8 +117,8 @@ public class GameManager : MonoBehaviour {
 		}
 		}
 	}
-	
-	void move(){
+
+    void move(){
 		if (selectedScript != null) {
 			if (selectedScript.isSelected == true&&t!=Time.frameCount) {
 				if (Input.GetMouseButtonDown(0)&&selectedScript.hasMoved==false){
@@ -123,7 +126,7 @@ public class GameManager : MonoBehaviour {
 					if (Physics.Raycast (ray1.origin, ray1.direction,out hit, 300, layermask)){
                         hitpoint = hit.point;
                         moveDistance = Vector3.Distance(hitpoint, selectedScript.transform.position);
-                        if (moveDistance < 15) {
+                        if (moveDistance < maxMove) {
                             Debug.Log("Moving!");
                             selectedScript.hasMoved = true;
                             moveScript = selected.GetComponent<TapToMove>();
@@ -197,8 +200,9 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        _manager.checkEnd();
 
-		placechar ();
+        placechar ();
 
 		turn_count=_manager.turn_count;
 		if (turn_count % 2 == 0) {

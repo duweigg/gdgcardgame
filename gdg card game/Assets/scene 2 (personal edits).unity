@@ -1504,6 +1504,8 @@ MonoBehaviour:
   isMoving: 0
   moveDistance: 0
   hitpoint: {x: 0, y: 0, z: 0}
+  dist: 0
+  maxMove: 50
 --- !u!4 &454098995
 Transform:
   m_ObjectHideFlags: 0
@@ -2391,7 +2393,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 413914, guid: dee8b8d30266bc248b54c61411af6e77, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 135968, guid: dee8b8d30266bc248b54c61411af6e77, type: 2}
       propertyPath: m_Layer
@@ -2400,6 +2402,14 @@ Prefab:
     - target: {fileID: 11465096, guid: dee8b8d30266bc248b54c61411af6e77, type: 2}
       propertyPath: isEnemy
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 135968, guid: dee8b8d30266bc248b54c61411af6e77, type: 2}
+      propertyPath: m_Name
+      value: TWO
+      objectReference: {fileID: 0}
+    - target: {fileID: 11465096, guid: dee8b8d30266bc248b54c61411af6e77, type: 2}
+      propertyPath: healval
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dee8b8d30266bc248b54c61411af6e77, type: 2}
@@ -4424,11 +4434,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 413914, guid: dee8b8d30266bc248b54c61411af6e77, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 135968, guid: dee8b8d30266bc248b54c61411af6e77, type: 2}
       propertyPath: m_Name
-      value: New Prefab (1)
+      value: ONE
       objectReference: {fileID: 0}
     - target: {fileID: 135968, guid: dee8b8d30266bc248b54c61411af6e77, type: 2}
       propertyPath: m_Layer

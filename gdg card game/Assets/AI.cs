@@ -15,7 +15,7 @@ public class AI : MonoBehaviour {
 
     int i;
     public float dist;
-    
+
 
     // Use this for initialization
     void Start() {
@@ -46,7 +46,7 @@ public class AI : MonoBehaviour {
         targetpos = closest.transform.position;
         //move to within 5 units
         if (mindist > 5) {
-            if (mindist < maxdist+5) {
+            if (mindist < maxdist + 5) {
                 targetpos = Vector3.MoveTowards(transform.position, targetpos, (mindist - attackdist));
                 while (targetpos != transform.position) {
                     transform.position = Vector3.MoveTowards(transform.position, targetpos, speed);
@@ -62,16 +62,19 @@ public class AI : MonoBehaviour {
             }
         }
         yield return null;
-    } 
-    
-	public void AIAttack(){
-        selectedscript = GetComponent<Stats>();
+    }
+
+    public void AIAttack() {
+        if (closest != null) {
+            selectedscript = GetComponent<Stats>();
             selectedscript.hit();
-        if (closest.isAttacked()) {
-            selectedscript.hasMoved = true;
-        }            
-        else {
-            selectedscript.hasAttacked = false;
+            if (closest.isAttacked()) {
+                selectedscript.hasMoved = true;
+            }
+            else {
+                selectedscript.hasAttacked = false;
+            }
         }
     }
+
 }

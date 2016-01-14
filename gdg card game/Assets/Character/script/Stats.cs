@@ -36,6 +36,7 @@ public class Stats : MonoBehaviour {
 	public bool debugheal = false;
 
 	public bool isSelected;
+    private int i;
 
 	void Start () {
 		//Do we reduce the summon points here or in game controller?
