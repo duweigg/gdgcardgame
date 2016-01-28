@@ -59,7 +59,8 @@ public class TapToMove : MonoBehaviour
         if (ready_to_move && flag && !Mathf.Approximately(gameObject.transform.position.magnitude, endPoint.magnitude))
         { //&& !(V3Equal(transform.position, endPoint))){
           //move the gameobject to the desired position
-            gameObject.transform.position =
+			transform.LookAt(endPoint);
+			gameObject.transform.position =
                 Vector3.Lerp(gameObject.transform.position, endPoint, 1 /
                 (duration * (Vector3.Distance(gameObject.transform.position, endPoint))));
 			isMoving=true;

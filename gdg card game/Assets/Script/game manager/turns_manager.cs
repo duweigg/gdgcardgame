@@ -55,7 +55,7 @@ public class turns_manager : MonoBehaviour {
 	public void startturn(){
 		_manager.resources = ++_manager.resourcesmax;
 		_manager.drawcard ();
-
+		_manager.arrangeCards ();
 
         //places all Stats in an array
         characterCount();
