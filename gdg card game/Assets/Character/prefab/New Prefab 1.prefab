@@ -27,7 +27,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 115602}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 34.730865, y: 66.80677, z: 92.037796}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -96,6 +96,7 @@ MonoBehaviour:
   turnEnded: 0
   attacker: {fileID: 0}
   charClass: {fileID: 0}
+  tm: {fileID: 0}
   debugattack: 0
   debughit: 0
   debugheal: 0

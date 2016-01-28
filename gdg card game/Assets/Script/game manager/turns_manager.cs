@@ -28,6 +28,8 @@ public class turns_manager : MonoBehaviour {
 	private int i;
     public int j;
 
+    public bool gameisOver;
+
 	GameManager _manager;
 
 
@@ -39,12 +41,15 @@ public class turns_manager : MonoBehaviour {
 
 
 	public	void endturn(){
-		turn_count++;
-	
-		_manager.resetSelected ();
+        if (turn_count % 2 == 0) {
+
+            turn_count++;
+
+            _manager.resetSelected();
 
 
-        StartCoroutine(startenemyturn());
+            StartCoroutine(startenemyturn());
+        }
 	}
 
 	public void startturn(){
@@ -76,27 +81,31 @@ public class turns_manager : MonoBehaviour {
 
 
 	IEnumerator startenemyturn(){
-		//  AI process
-		length = 0;
-		Enemylist = new AI[20];
-		foreach (GameObject EnemyClass in EnemyClasslist){
-			(EnemyClass.GetComponentsInChildren<AI> ()).CopyTo (Enemylist, length);
-			length+= (EnemyClass.GetComponentsInChildren<AI> ()).Length;
-			mlength=length;
-		}
-		
-		foreach (AI Enemy in Enemylist) {
-            if (Enemy!=null&&StatsLists[0]!=null){
-                yield return StartCoroutine (Enemy.AIMove());
-			    Enemy.AIAttack();
-                Debug.Log("Attack");
+        if (gameisOver == false) {
+            //  AI process
+            length = 0;
+            Enemylist = new AI[20];
+            foreach (GameObject EnemyClass in EnemyClasslist) {
+                (EnemyClass.GetComponentsInChildren<AI>()).CopyTo(Enemylist, length);
+                length += (EnemyClass.GetComponentsInChildren<AI>()).Length;
+                mlength = length;
             }
-		}
-		endenemyturn ();
+
+            foreach (AI Enemy in Enemylist) {
+                if (Enemy != null && StatsLists[0] != null) {
+                    yield return StartCoroutine(Enemy.AIMove());
+                    Enemy.AIAttack();
+                    Debug.Log("Attack");
+                }
+            }
+            endenemyturn();
+        }
 	}
 
 	public void endenemyturn(){
-		turn_count++;
+        if (!gameisOver) {
+            turn_count++;
+        }
 
         Debug.Log("Test");
 
@@ -149,18 +158,20 @@ public class turns_manager : MonoBehaviour {
 	}
 
     public void checkEnd() {
-        i = 0;
-        j = 0;
-        foreach (Stats Stat in StatsLists) {
-            if (Stat != null) {
-                i++;
-                if (Stat.turnEnded == true) {
-                    j++;
+        if (!gameisOver) {
+            i = 0;
+            j = 0;
+            foreach (Stats Stat in StatsLists) {
+                if (Stat != null) {
+                    i++;
+                    if (Stat.turnEnded == true) {
+                        j++;
+                    }
                 }
             }
-        }
-        if (i == j) {
-            endturn();
+            if (i == j) {
+                endturn();
+            }
         }
     }
 
@@ -172,6 +183,7 @@ public class turns_manager : MonoBehaviour {
 
     void gameOver() {
         Debug.Log("Game Over!");
+        gameisOver = true;
     }
 
 
@@ -180,8 +192,9 @@ public class turns_manager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		_manager = this.GetComponent<GameManager>();
-		startturn ();
-
+        gameisOver = false;
+        startturn ();
+        
 	}
 
     // Update is called once per frame

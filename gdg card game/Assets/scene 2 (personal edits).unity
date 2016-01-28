@@ -497,10 +497,22 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 454098994}
-        m_MethodName: _getchar
+        m_MethodName: _getchar4
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgument: {fileID: 107568, guid: eed30943e28e431448f915c5daebc6f2,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 454098994}
+        m_MethodName: setButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 134700005}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -652,10 +664,22 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 454098994}
-        m_MethodName: _getchar
+        m_MethodName: _getchar1
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 621870267}
+          m_ObjectArgument: {fileID: 115602, guid: 4368cb24c5e51b247a9b7bd97ed1acb6,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 454098994}
+        m_MethodName: setButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 137940218}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -790,10 +814,22 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 454098994}
-        m_MethodName: _getchar
+        m_MethodName: _getchar2
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgument: {fileID: 172748, guid: f1c5f6a6c2fb50a4f90ebeb7c43e02cf,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 454098994}
+        m_MethodName: setButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 138002892}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -928,10 +964,22 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 454098994}
-        m_MethodName: _getchar
+        m_MethodName: _getchar2
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgument: {fileID: 172748, guid: f1c5f6a6c2fb50a4f90ebeb7c43e02cf,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 454098994}
+        m_MethodName: setButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 193676170}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -1361,10 +1409,22 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 454098994}
-        m_MethodName: _getchar
+        m_MethodName: _getchar3
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgument: {fileID: 195784, guid: 000cd48e13a9d904383f2a88b9515fde,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 454098994}
+        m_MethodName: setButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 341366094}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -1463,6 +1523,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resourcesmax: 0
   resources: 0
+  _attributes: {fileID: 0}
   _terrain: {fileID: 0}
   _cards:
   - {fileID: 1524367359}
@@ -1485,7 +1546,12 @@ MonoBehaviour:
   - {fileID: 2026692631}
   - {fileID: 1866291627}
   - {fileID: 1044216163}
-  _handcards: []
+  _handcards:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   temp: {fileID: 0}
   index: 0
   cam: {fileID: 1406015167}
@@ -1506,6 +1572,22 @@ MonoBehaviour:
   hitpoint: {x: 0, y: 0, z: 0}
   dist: 0
   maxMove: 50
+  position: {x: 0, y: 0, z: 0}
+  Class1: {fileID: 995496108}
+  Class2: {fileID: 626577533}
+  Class3: {fileID: 821822012}
+  Class4: {fileID: 538773180}
+  Class5: {fileID: 560943090}
+  _button: {fileID: 0}
+  newPos: {x: -100, y: -100}
+  i: 0
+  currentCard: 0
+  pos:
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
 --- !u!4 &454098995
 Transform:
   m_ObjectHideFlags: 0
@@ -1581,6 +1663,7 @@ MonoBehaviour:
   length: 0
   mlength: 0
   j: 0
+  gameisOver: 0
 --- !u!1 &511574277
 GameObject:
   m_ObjectHideFlags: 0
@@ -1674,10 +1757,22 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 454098994}
-        m_MethodName: _getchar
+        m_MethodName: _getchar4
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgument: {fileID: 107568, guid: eed30943e28e431448f915c5daebc6f2,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 454098994}
+        m_MethodName: setButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 511574277}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -1921,6 +2016,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 626577534}
+  - 114: {fileID: 626577535}
   m_Layer: 0
   m_Name: Class 2
   m_TagString: Untagged
@@ -1940,6 +2036,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1545424224}
   m_RootOrder: 3
+--- !u!114 &626577535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 626577533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7653237179a264a47b3741cd7991cf9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 0
+  maxhp: 0
+  attackval: 0
+  critval: 0
+  attackrange: 0
+  armorval: 0
+  healval: 0
 --- !u!4 &699294868 stripped
 Transform:
   m_PrefabParentObject: {fileID: 413914, guid: dee8b8d30266bc248b54c61411af6e77, type: 2}
@@ -2086,7 +2200,7 @@ RectTransform:
   m_RootOrder: 5
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 1855, y: 100}
+  m_AnchoredPosition: {x: -221, y: 100}
   m_SizeDelta: {x: 167, y: 38}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &816873746
@@ -2146,10 +2260,22 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 454098994}
-        m_MethodName: _getchar
+        m_MethodName: _getchar2
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgument: {fileID: 172748, guid: f1c5f6a6c2fb50a4f90ebeb7c43e02cf,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 454098994}
+        m_MethodName: setButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 816873744}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -2199,6 +2325,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 821822013}
+  - 114: {fileID: 821822014}
   m_Layer: 0
   m_Name: Class 3
   m_TagString: Untagged
@@ -2218,6 +2345,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1545424224}
   m_RootOrder: 4
+--- !u!114 &821822014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 821822012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7653237179a264a47b3741cd7991cf9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 0
+  maxhp: 0
+  attackval: 0
+  critval: 0
+  attackrange: 0
+  armorval: 0
+  healval: 0
 --- !u!1 &842466175
 GameObject:
   m_ObjectHideFlags: 0
@@ -2311,10 +2456,22 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 454098994}
-        m_MethodName: _getchar
+        m_MethodName: _getchar3
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgument: {fileID: 195784, guid: 000cd48e13a9d904383f2a88b9515fde,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 454098994}
+        m_MethodName: setButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 842466175}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -2654,10 +2811,22 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 454098994}
-        m_MethodName: _getchar
+        m_MethodName: _getchar2
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgument: {fileID: 172748, guid: f1c5f6a6c2fb50a4f90ebeb7c43e02cf,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 454098994}
+        m_MethodName: setButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 935519277}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -2840,10 +3009,22 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 454098994}
-        m_MethodName: _getchar
+        m_MethodName: _getchar3
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgument: {fileID: 195784, guid: 000cd48e13a9d904383f2a88b9515fde,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 454098994}
+        m_MethodName: setButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1036013702}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -2978,10 +3159,22 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 454098994}
-        m_MethodName: _getchar
+        m_MethodName: _getchar5
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgument: {fileID: 152300, guid: b3d704d188ad48e4a84f4a517f35b0db,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 454098994}
+        m_MethodName: setButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1044216163}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -3162,10 +3355,22 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 454098994}
-        m_MethodName: _getchar
+        m_MethodName: _getchar1
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgument: {fileID: 115602, guid: 4368cb24c5e51b247a9b7bd97ed1acb6,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 454098994}
+        m_MethodName: setButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1113788270}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -3935,10 +4140,22 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 454098994}
-        m_MethodName: _getchar
+        m_MethodName: _getchar5
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgument: {fileID: 152300, guid: b3d704d188ad48e4a84f4a517f35b0db,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 454098994}
+        m_MethodName: setButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1432914508}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -4064,10 +4281,22 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 454098994}
-        m_MethodName: _getchar
+        m_MethodName: _getchar1
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgument: {fileID: 115602, guid: 4368cb24c5e51b247a9b7bd97ed1acb6,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 454098994}
+        m_MethodName: setButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1524367359}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -4253,10 +4482,22 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 454098994}
-        m_MethodName: _getchar
+        m_MethodName: _getchar1
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgument: {fileID: 115602, guid: 4368cb24c5e51b247a9b7bd97ed1acb6,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 454098994}
+        m_MethodName: setButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1579734521}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -4701,10 +4942,22 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 454098994}
-        m_MethodName: _getchar
+        m_MethodName: _getchar4
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgument: {fileID: 107568, guid: eed30943e28e431448f915c5daebc6f2,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 454098994}
+        m_MethodName: setButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1713803556}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -4885,10 +5138,22 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 454098994}
-        m_MethodName: _getchar
+        m_MethodName: _getchar3
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgument: {fileID: 195784, guid: 000cd48e13a9d904383f2a88b9515fde,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 454098994}
+        m_MethodName: setButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1728199543}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -5093,10 +5358,22 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 454098994}
-        m_MethodName: _getchar
+        m_MethodName: _getchar5
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgument: {fileID: 152300, guid: b3d704d188ad48e4a84f4a517f35b0db,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 454098994}
+        m_MethodName: setButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1866291627}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -5524,10 +5801,22 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 454098994}
-        m_MethodName: _getchar
+        m_MethodName: _getchar5
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgument: {fileID: 152300, guid: b3d704d188ad48e4a84f4a517f35b0db,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 454098994}
+        m_MethodName: setButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2026692631}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -5792,10 +6081,22 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 454098994}
-        m_MethodName: _getchar
+        m_MethodName: _getchar4
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgument: {fileID: 107568, guid: eed30943e28e431448f915c5daebc6f2,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 454098994}
+        m_MethodName: setButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2123797738}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
