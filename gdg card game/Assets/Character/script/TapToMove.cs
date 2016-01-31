@@ -14,9 +14,12 @@ public class TapToMove : MonoBehaviour
     //vertical position of the gameobject
     private float yAxis;
 	public bool isMoving=false;
+	Animator _char_animtor;
 
     void Start()
     {
+		//get the animator of the char edited by duwei
+		_char_animtor = gameObject.GetComponent<Animator> ();
         //save the y axis value of gameobject
         yAxis = gameObject.transform.position.y;
     }
@@ -60,6 +63,9 @@ public class TapToMove : MonoBehaviour
         { //&& !(V3Equal(transform.position, endPoint))){
           //move the gameobject to the desired position
 			transform.LookAt(endPoint);
+
+			_char_animtor.SetInteger ("IsMoving" ,1);
+
 			gameObject.transform.position =
                 Vector3.Lerp(gameObject.transform.position, endPoint, 1 /
                 (duration * (Vector3.Distance(gameObject.transform.position, endPoint))));
@@ -72,6 +78,7 @@ public class TapToMove : MonoBehaviour
             Debug.Log("I am here");
             ready_to_move = !ready_to_move;
 			isMoving=false;
+			_char_animtor.SetInteger("IsMoving",0);
         }
 
     }

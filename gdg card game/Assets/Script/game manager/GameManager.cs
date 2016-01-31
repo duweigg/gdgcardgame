@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour {
     public GameObject _char = null;
     int layermask = 1 << 10;   //layer 10 is the teerain
 
+
+
 	int UIlayer = 1 << 5;
 
 
@@ -66,6 +68,14 @@ public class GameManager : MonoBehaviour {
     //attacking/healing
     GameObject Attacker;
     GameObject Target;
+
+	//range indicator
+	public GameObject Move_range_indicator;
+	public GameObject Att_range_indicator;
+	Vector3 Position;
+
+	//attack animation
+	Animator anim;
 
     //assign character to variable _char from the card.
     public void _getchar1(GameObject character) {
@@ -132,6 +142,7 @@ public class GameManager : MonoBehaviour {
                 _char = null;
                 _attributes = null;
                 _button.transform.position = newPos;
+		
 				for (i = 0; i < 5; i++) {
 					if (_handcards [i] == _button) {
 						_handcards [i] = null;
@@ -158,13 +169,20 @@ public class GameManager : MonoBehaviour {
 
 		//selects character
         //need to add another condition here to allow heals again
-		if (Input.GetMouseButtonDown (0)) {
+			if (Input.GetMouseButtonDown (0)) {
 			Ray ray1 = cam.ScreenPointToRay (Input.mousePosition);
 			if (Physics.Raycast (ray1.origin, ray1.direction,out hit, 300, layer.value)){
 				Debug.Log ("Hit!");
 				selected= hit.collider.gameObject;
-				selectedScript = selected.GetComponent<Stats>();
-				selectedScript.isSelected = true;
+
+				//edited by duwei 3 lines
+
+					Position = selected.transform.position + new Vector3 (0,0,1); // position of the range
+					Move_range_indicator.transform.localScale = new Vector3 (2*maxMove ,1,  2*maxMove); //size of the range
+					Move_range_indicator.transform.position = Position; //place the range
+
+					selectedScript = selected.GetComponent<Stats>();
+					selectedScript.isSelected = true;
 					if (selectedScript.turnEnded){
 						resetSelected();
 						Debug.Log ("Turn Ended. Reset.");
@@ -175,6 +193,13 @@ public class GameManager : MonoBehaviour {
 		//deselects character
 		if (Input.GetMouseButtonDown (1)&&selectedScript!=null) {
 				Debug.Log ("Reset!");
+
+				//edited bu duwei 1line (reversed the move option, return to the original place)
+				if (selected.transform.position != Position - new Vector3 (0, 0, 1)) {
+					selected.transform.position = Position - new Vector3 (0, 0, 1);
+					selectedScript.hasMoved = false;
+				}
+
 				selectedScript.isSelected = false;
 				selected = null;
 				selectedScript=null;
@@ -233,12 +258,22 @@ public class GameManager : MonoBehaviour {
 				Ray ray2 = cam.ScreenPointToRay (Input.mousePosition);
 				if (Physics.Raycast (ray2.origin, ray2.direction, out hit, 300, unitlayers)){
 					Debug.Log ("Attacking!");
+
+					//edited by duwei
+					anim = selected.GetComponent<Animator> ();
+					anim.SetInteger ("IsAtt",1);
+					anim.SetInteger ("IsAtt",0);
+
 					isAttacking=true;
 					Target = hit.collider.gameObject;
 					targetScript=Target.GetComponent<Stats>();
 					selectedScript.hit ();
 					if (targetScript.isAttacked()){
 						selectedScript.hasMoved=true;
+
+						//edited by duwei 1 line
+						Position = selected.transform.position + new Vector3 (0,0,1);
+
 						resetSelected();
 					}else{
 						selectedScript.hasAttacked = false;
