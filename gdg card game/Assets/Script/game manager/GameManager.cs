@@ -23,19 +23,22 @@ public class GameManager : MonoBehaviour {
 
 
 
-	int UIlayer = 1 << 5;
+    int UIlayer = 1 << 5;
 
 
     //for selection
     RaycastHit hit;
-	RaycastHit hit2;
+    RaycastHit hit2;
     public GameObject selected;
+    public GameObject lastSelected;
     public LayerMask layer;
+    public LayerMask layer2;
     public int turn_count;
     public turns_manager _manager;
     public Stats selectedScript;
     public TapToMove moveScript;
     public int t;
+    public int t2;
     public Stats targetScript;
     public bool isAttacking;
     public bool isMoving;
@@ -59,23 +62,23 @@ public class GameManager : MonoBehaviour {
 
 
     public int i;
-	public int j;
+    public int j;
     public int currentCard;
     public Vector2[] pos;
-	private bool switched;
-	public bool UIhit;
+    private bool switched;
+    public bool UIhit;
 
     //attacking/healing
     GameObject Attacker;
     GameObject Target;
 
-	//range indicator
-	public GameObject Move_range_indicator;
-	public GameObject Att_range_indicator;
-	Vector3 Position;
+    //range indicator
+    public GameObject Move_range_indicator;
+    public GameObject Att_range_indicator;
+    Vector3 Position;
 
-	//attack animation
-	Animator anim;
+    //attack animation
+    Animator anim;
 
     //assign character to variable _char from the card.
     public void _getchar1(GameObject character) {
@@ -139,16 +142,17 @@ public class GameManager : MonoBehaviour {
             //if left mouse is clicked;
             if (Input.GetMouseButton(0)) {
                 //to place the character
+                t2 = Time.frameCount;
                 _char = null;
                 _attributes = null;
                 _button.transform.position = newPos;
-		
-				for (i = 0; i < 5; i++) {
-					if (_handcards [i] == _button) {
-						_handcards [i] = null;
-					}
-				}
-				arrangeCards ();
+
+                for (i = 0; i < 5; i++) {
+                    if (_handcards[i] == _button) {
+                        _handcards[i] = null;
+                    }
+                }
+                arrangeCards();
             }
             if (Input.GetMouseButton(1)) {
                 Destroy(_char);
@@ -157,139 +161,165 @@ public class GameManager : MonoBehaviour {
             //show warning and play sound effect
             Debug.Log("not enough resource");
         }
+        
     }
 
     public void setButton(GameObject button) {
         _button = button;
     }
 
-	void selectChar(){
-		if(_manager.turn_count%2==0){
-		isAttacking = false;
+    void selectChar() {
+        if (_manager.turn_count % 2 == 0) {
+            isAttacking = false;
 
-		//selects character
-        //need to add another condition here to allow heals again
-			if (Input.GetMouseButtonDown (0)) {
-			Ray ray1 = cam.ScreenPointToRay (Input.mousePosition);
-			if (Physics.Raycast (ray1.origin, ray1.direction,out hit, 300, layer.value)){
-				Debug.Log ("Hit!");
-				selected= hit.collider.gameObject;
+            //selects character
+            //need to add another condition here to allow heals again
+            if (Input.GetMouseButtonDown(0)&&Time.frameCount!=t2) {
+                Ray ray1 = cam.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray1.origin, ray1.direction, out hit, 300, layer.value)) {
+                    Debug.Log("Hit!");
+                    if (selected != null) {
+                        lastSelected = selected;
+                    }
+                    selected = hit.collider.gameObject;
 
-				//edited by duwei 3 lines
+                    //edited by duwei 3 lines
+                    if (selected != lastSelected) {
 
-					Position = selected.transform.position + new Vector3 (0,0,1); // position of the range
-					Move_range_indicator.transform.localScale = new Vector3 (2*maxMove ,1,  2*maxMove); //size of the range
-					Move_range_indicator.transform.position = Position; //place the range
 
-					selectedScript = selected.GetComponent<Stats>();
-					selectedScript.isSelected = true;
-					if (selectedScript.turnEnded){
-						resetSelected();
-						Debug.Log ("Turn Ended. Reset.");
-					}
-				t=Time.frameCount;
-			}
-		}
-		//deselects character
-		if (Input.GetMouseButtonDown (1)&&selectedScript!=null) {
-				Debug.Log ("Reset!");
 
-				//edited bu duwei 1line (reversed the move option, return to the original place)
-				if (selected.transform.position != Position - new Vector3 (0, 0, 1)) {
-					selected.transform.position = Position - new Vector3 (0, 0, 1);
-					selectedScript.hasMoved = false;
-				}
+                        selectedScript = selected.GetComponent<Stats>();
+                        selectedScript.isSelected = true;
+                        if (selectedScript.hasMoved == false) {
+                            Position = selected.transform.position + new Vector3(0, 0, 1); // position of the range
+                            Move_range_indicator.transform.localScale = new Vector3(2 * maxMove, 1, 2 * maxMove); //size of the range
+                            Move_range_indicator.transform.position = Position; //place the range
+                        }
+                        else {
+                            Move_range_indicator.transform.position = new Vector3(0, 0, 0);
+                        }
 
-				selectedScript.isSelected = false;
-				selected = null;
-				selectedScript=null;
-			
-		}
+                        if (selectedScript.turnEnded) {
+                            resetSelected();
+                            Debug.Log("Turn Ended. Reset.");
+                        }
+                    }
+                    t = Time.frameCount;
+                }
+            }
+            //deselects character
+            if (!isMoving && Input.GetMouseButtonDown(1) && selectedScript != null) {
+                Debug.Log("Reset!");
 
-		if (selected != null) {
-			moveScript = selected.GetComponent<TapToMove> ();
-			isMoving = moveScript.isMoving;
-		} else {
-			isMoving=false;
-		}
+                //edited bu duwei 1line (reversed the move option, return to the original place)
+                if (selected.transform.position != Position - new Vector3(0, 0, 1)) {
+                    selected.transform.position = Position - new Vector3(0, 0, 1);
+                    selectedScript.hasMoved = false;
+                }
 
-		if (!isMoving) {
-			attack ();
-		}
+                Move_range_indicator.transform.position = new Vector3(0, 0, 0);
 
-		if (!isAttacking) {
-			move ();
-		}
-		}
-	}
+                selectedScript.isSelected = false;
+                selected = null;
+                selectedScript = null;
 
-    void move(){
-		Ray ray2 = cam.ScreenPointToRay (Input.mousePosition);
-		if (Physics.Raycast (ray2.origin, ray2.direction, out hit2, 300, UIlayer)) {
-			Debug.Log ("I");
-		}else{
-			if (selectedScript != null) {
-				if (selectedScript.isSelected == true&&t!=Time.frameCount) {
-					if (Input.GetMouseButtonDown(0)&&selectedScript.hasMoved==false){
-						Ray ray1 = cam.ScreenPointToRay (Input.mousePosition);
-						if (Physics.Raycast (ray1.origin, ray1.direction,out hit, 300, layermask)){
-                  	      hitpoint = hit.point;
-                  	      moveDistance = Vector3.Distance(hitpoint, selectedScript.transform.position);
-                  	      if (moveDistance < maxMove) {
-                   	         Debug.Log("Moving!");
-                   	         selectedScript.hasMoved = true;
-                   	         moveScript = selected.GetComponent<TapToMove>();
-                   	         moveScript.ready_to_move = true;
-                   	     }
-                    	    else {
-                    	        Debug.Log("Too Far!");
-                 	       }
-						}
-					}
-				}
-			}
-		}
-	}
+            }
 
-	
-	void attack(){
-		if (selectedScript != null&&selected!=null) {
-			if (Input.GetMouseButtonDown(0)&&selectedScript.hasAttacked==false&&t!=Time.frameCount){
-				Ray ray2 = cam.ScreenPointToRay (Input.mousePosition);
-				if (Physics.Raycast (ray2.origin, ray2.direction, out hit, 300, unitlayers)){
-					Debug.Log ("Attacking!");
+            if (selected != null) {
+                moveScript = selected.GetComponent<TapToMove>();
+                isMoving = moveScript.isMoving;
+            } else {
+                isMoving = false;
+            }
 
-					//edited by duwei
-					anim = selected.GetComponent<Animator> ();
-					anim.SetInteger ("IsAtt",1);
-					anim.SetInteger ("IsAtt",0);
+            if (!isMoving) {
+                attack();
+            }
 
-					isAttacking=true;
-					Target = hit.collider.gameObject;
-					targetScript=Target.GetComponent<Stats>();
-					selectedScript.hit ();
-					if (targetScript.isAttacked()){
-						selectedScript.hasMoved=true;
+            if (!isAttacking) {
+                move();
+            }
+        }
+    }
 
-						//edited by duwei 1 line
-						Position = selected.transform.position + new Vector3 (0,0,1);
+    void move() {
+        Ray ray2 = cam.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray2.origin, ray2.direction, out hit2, 300, UIlayer)) {
+            Debug.Log("I");
+        } else {
+            if (selectedScript != null) {
+                if (selectedScript.isSelected == true && t != Time.frameCount) {
+                    if (Input.GetMouseButtonDown(0)) {
+                        Ray ray1 = cam.ScreenPointToRay(Input.mousePosition);
+                        if (Physics.Raycast(ray1.origin, ray1.direction, out hit, 300, layer2.value)) {
+                            Debug.Log("Hit2");
+                            hitpoint = hit.point;
+                            Debug.Log("Moving!");
+                            moveScript = selected.GetComponent<TapToMove>();
+                            moveScript.ready_to_move = true;
+                            selectedScript.hasMoved = true;
+                        }
+                        else {
+                            Debug.Log("Too Far!");
+                        }
+                    }
+                }
+            }
+        }
+    }
 
-						resetSelected();
-					}else{
-						selectedScript.hasAttacked = false;
-					}
 
-				}
-			}
-		}
+    void attack() {
+        if (selectedScript != null && selected != null) {
+            if (Input.GetMouseButtonDown(0) && selectedScript.hasAttacked == false && t != Time.frameCount) {
+                Ray ray2 = cam.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray2.origin, ray2.direction, out hit, 300, unitlayers)) {
+                    Debug.Log("Attacking!");
 
-	}
 
-	//resets selected units to null
-	public void resetSelected(){
-		selected = null;
-		selectedScript = null;
-	}
+
+                    isAttacking = true;
+                    Target = hit.collider.gameObject;
+                    targetScript = Target.GetComponent<Stats>();
+                    selectedScript.hit();
+                    if (targetScript.isAttacked()) {
+                        selectedScript.hasMoved = true;
+
+                        //edited by duwei
+                        anim = selected.GetComponent<Animator>();
+                        if (anim != null) {
+                            anim.SetInteger("IsAtt", 1);
+                            anim.SetInteger("IsAtt", 0);
+                        }
+
+                        //edited by duwei 1 line
+                        Position = selected.transform.position + new Vector3(0, 0, 1);
+
+                        resetSelected();
+                    } else {
+                        selectedScript.hasAttacked = false;
+                    }
+
+                }
+            }
+        }
+
+    }
+
+    //resets selected units to null
+    public void resetSelected() {
+        Move_range_indicator.transform.position = new Vector3(0, 0, 0);
+        selected = null;
+        selectedScript = null;
+    }
+
+    public void setPosition() {
+        if (selectedScript != null) {
+            selectedScript.turnEnded = true;
+            selectedScript.hasMoved = true;
+            resetSelected();
+        }
+    }
 
 	void shaffle_card(){
 		for (int i=0; i<20; i++) {
