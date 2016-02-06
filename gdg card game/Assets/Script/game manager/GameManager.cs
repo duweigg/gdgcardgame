@@ -80,6 +80,9 @@ public class GameManager : MonoBehaviour {
     //attack animation
     Animator anim;
 
+	public bool debug;
+	public GameObject debugObj;
+
     //assign character to variable _char from the card.
     public void _getchar1(GameObject character) {
         _char = Instantiate(character, position, Quaternion.identity) as GameObject;
@@ -140,7 +143,7 @@ public class GameManager : MonoBehaviour {
             _char.transform.position = hitt.point;
 
             //if left mouse is clicked;
-            if (Input.GetMouseButton(0)) {
+			if (Input.GetMouseButtonDown(0)) {
                 //to place the character
                 t2 = Time.frameCount;
                 _char = null;
@@ -184,12 +187,9 @@ public class GameManager : MonoBehaviour {
                     selected = hit.collider.gameObject;
 
                     //edited by duwei 3 lines
-                    if (selected != lastSelected) {
-
-
-
                         selectedScript = selected.GetComponent<Stats>();
                         selectedScript.isSelected = true;
+
                         if (selectedScript.hasMoved == false) {
                             Position = selected.transform.position + new Vector3(0, 0, 1); // position of the range
                             Move_range_indicator.transform.localScale = new Vector3(2 * maxMove, 1, 2 * maxMove); //size of the range
@@ -202,7 +202,6 @@ public class GameManager : MonoBehaviour {
                         if (selectedScript.turnEnded) {
                             resetSelected();
                             Debug.Log("Turn Ended. Reset.");
-                        }
                     }
                     t = Time.frameCount;
                 }
@@ -392,5 +391,9 @@ public class GameManager : MonoBehaviour {
 			selectChar ();
 		}
 
+		if (debug) {
+			selectedScript.attack_anim (debugObj);
+			//debug = !debug;
+		}
 	}
 }

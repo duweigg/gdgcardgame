@@ -39,11 +39,13 @@ EditorBuildSettings:
     path: Assets/TDTK/Scenes/ForMobile_TestedOnGalaxy4S/TDTK_ShapedPlatform.unity
   - enabled: 0
     path: Assets/3DForgeScene/3DForgeDemo.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/TCG/EditDeckScene.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/TCG/GameScene.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/TCG/LobbyScene.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/TCG/MainMenuScene.unity
+  - enabled: 0
+    path: Assets/scene 2 (personal edits).unity

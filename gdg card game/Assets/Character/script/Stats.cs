@@ -2,7 +2,10 @@
 using System.Collections;
 
 public class Stats : MonoBehaviour {
-	
+	public ParticleSystem ps1;
+	public ParticleSystem ps2;
+
+
 	public int hp;
 	public int maxhp;
 	public int attack;
@@ -230,4 +233,18 @@ public class Stats : MonoBehaviour {
         Destroy (this.gameObject);
         
     }
+
+
+	public void attack_anim(GameObject target){
+		ParticleSystem.EmissionModule em1 = ps1.emission;
+		em1.enabled=true;
+		ParticleSystem.EmissionModule em2 = ps1.emission;
+		em2.enabled=true;
+		/*if (ps1.time > 5.0) {
+			em1.enabled = false;
+			em2.enabled = false;
+		}*/
+		Debug.Log ("att_anim is playing");
+
+	}
 }
