@@ -128,6 +128,7 @@ public class turns_manager : MonoBehaviour {
 			randomroll= Random.value;
 			if (randomroll<=0.5f){
 				GameObject monster = Instantiate (monster1, position, Quaternion.identity) as GameObject;
+				monster.transform.LookAt (position - new Vector3 (0, 0, 1));
 				monster.transform.parent = Monster1.transform;
 			}
 			if (randomroll>0.5f&&randomroll<=0.7f){

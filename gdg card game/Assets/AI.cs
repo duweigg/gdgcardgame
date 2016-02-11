@@ -48,6 +48,7 @@ public class AI : MonoBehaviour {
         if (mindist > 5) {
             if (mindist < maxdist + 5) {
                 targetpos = Vector3.MoveTowards(transform.position, targetpos, (mindist - attackdist));
+				transform.LookAt (targetpos);
                 while (targetpos != transform.position) {
                     transform.position = Vector3.MoveTowards(transform.position, targetpos, speed);
                     yield return null;
@@ -55,6 +56,7 @@ public class AI : MonoBehaviour {
             }
             else {
                 targetpos = Vector3.MoveTowards(transform.position, targetpos, maxdist);
+				transform.LookAt (targetpos);
                 while (targetpos != transform.position) {
                     transform.position = Vector3.MoveTowards(transform.position, targetpos, speed);
                     yield return null;

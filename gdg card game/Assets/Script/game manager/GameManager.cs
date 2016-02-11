@@ -214,20 +214,7 @@ public class GameManager : MonoBehaviour {
             }
             //deselects character
             if (!isMoving && Input.GetMouseButtonDown(1) && selectedScript != null) {
-                Debug.Log("Reset!");
-
-                //edited bu duwei 1line (reversed the move option, return to the original place)
-                if (selected.transform.position != Position - new Vector3(0, 0, 1)) {
-                    selected.transform.position = Position - new Vector3(0, 0, 1);
-                    selectedScript.hasMoved = false;
-                }
-
-                Move_range_indicator.transform.position = new Vector3(0, 0, 0);
-
-                selectedScript.isSelected = false;
-                selected = null;
-                selectedScript = null;
-
+				setPosition ();
             }
 
             if (selected != null) {
@@ -254,7 +241,7 @@ public class GameManager : MonoBehaviour {
                 if (selectedScript.isSelected == true && t != Time.frameCount) {
                     if (Input.GetMouseButtonDown(0)) {
                         Ray ray1 = cam.ScreenPointToRay(Input.mousePosition);
-                        if (Physics.Raycast(ray1.origin, ray1.direction, out hit, 300, layer2.value)) {
+						if (Physics.Raycast(ray1.origin, ray1.direction, out hit, 300, layer2.value)) {
                             hitpoint = hit.point;
                             Debug.Log("Moving!");
                             moveScript = selected.GetComponent<TapToMove>();
@@ -307,6 +294,24 @@ public class GameManager : MonoBehaviour {
         }
 
     }
+
+
+	public void resetPosition(){
+		if (!isMoving && selectedScript != null) {
+			Debug.Log("Reset!");
+			//edited bu duwei 1line (reversed the move option, return to the original place)
+			if (selected.transform.position != Position - new Vector3(0, 0, 1)) {
+				selected.transform.position = Position - new Vector3(0, 0, 1);
+				selectedScript.hasMoved = false;
+			}
+
+			Move_range_indicator.transform.position = new Vector3(0, 0, 0);
+
+			selectedScript.isSelected = false;
+			selected = null;
+			selectedScript = null;
+		}
+	}
 
     //resets selected units to null
     public void resetSelected() {
