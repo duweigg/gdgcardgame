@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.EventSystems;
 
 public class GameManager : MonoBehaviour {
     //player attributes
@@ -92,6 +93,7 @@ public class GameManager : MonoBehaviour {
                 _attributes = _char.GetComponent<Stats>();
             }
         }
+        resetSelected();
     }
 
     public void _getchar2(GameObject character) {
@@ -102,6 +104,7 @@ public class GameManager : MonoBehaviour {
                 _attributes = _char.GetComponent<Stats>();
             }
         }
+        resetSelected();
     }
 
     public void _getchar3(GameObject character) {
@@ -112,6 +115,7 @@ public class GameManager : MonoBehaviour {
                 _attributes = _char.GetComponent<Stats>();
             }
         }
+        resetSelected();
     }
 
     public void _getchar4(GameObject character) {
@@ -122,6 +126,7 @@ public class GameManager : MonoBehaviour {
                 _attributes = _char.GetComponent<Stats>();
             }
         }
+        resetSelected();
     }
 
     public void _getchar5(GameObject character) {
@@ -132,6 +137,7 @@ public class GameManager : MonoBehaviour {
                 _attributes = _char.GetComponent<Stats>();
             }
         }
+        resetSelected();
     }
 
 
@@ -243,15 +249,12 @@ public class GameManager : MonoBehaviour {
 
     void move() {
         Ray ray2 = cam.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray2.origin, ray2.direction, out hit2, 300, UIlayer)) {
-            Debug.Log("I");
-        } else {
+        if (!EventSystem.current.IsPointerOverGameObject()) {
             if (selectedScript != null) {
                 if (selectedScript.isSelected == true && t != Time.frameCount) {
                     if (Input.GetMouseButtonDown(0)) {
                         Ray ray1 = cam.ScreenPointToRay(Input.mousePosition);
                         if (Physics.Raycast(ray1.origin, ray1.direction, out hit, 300, layer2.value)) {
-                            Debug.Log("Hit2");
                             hitpoint = hit.point;
                             Debug.Log("Moving!");
                             moveScript = selected.GetComponent<TapToMove>();

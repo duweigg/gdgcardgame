@@ -49,7 +49,7 @@ public class TapToMove : MonoBehaviour
             #endif
 
             //Check if the ray hits any collider
-            if (!isMoving && Physics.Raycast(ray, out hit,300, layers))
+            if (Physics.Raycast(ray, out hit,300, layers))
             {
                 //set a flag to indicate to move the gameobject
                 flag = true;
