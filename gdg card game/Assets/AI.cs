@@ -112,7 +112,7 @@ public class AI : MonoBehaviour {
             Vector3 deltaPos = Vector3.MoveTowards(transform.position, collided.transform.position, -speed)- transform.position;
             targetpos = targetpos + deltaPos;
             Debug.DrawLine(targetpos, transform.position, Color.green, 10, false);
-            transform.position = Vector3.MoveTowards(transform.position, castDirection, -speed);
+			transform.position = Vector3.MoveTowards(transform.position, collided.transform.position, -speed);
                     }
     }
 
