@@ -13,6 +13,7 @@ GameObject:
   - 23: {fileID: 2330656}
   - 114: {fileID: 11497160}
   - 114: {fileID: 11403420}
+  - 54: {fileID: 5429672}
   m_Layer: 12
   m_Name: New Prefab 1
   m_TagString: Untagged
@@ -65,6 +66,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 115602}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &5429672
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 115602}
+  serializedVersion: 2
+  m_Mass: 0.0000001
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &11403420
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -76,6 +92,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e2a8eec17b692843b8a6dcdfa54c1b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ps1: {fileID: 0}
+  ps2: {fileID: 0}
   hp: 0
   maxhp: 0
   attack: 0
@@ -123,6 +141,10 @@ MonoBehaviour:
   attackdist: 0
   selectedscript: {fileID: 0}
   dist: 0
+  isMoving: 0
+  isSelected: 0
+  isColliding: 0
+  collided: {fileID: 0}
 --- !u!136 &13693640
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -130,7 +152,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 115602}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 2
@@ -154,6 +176,34 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: isEnemy
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Mass
+      value: 0.0000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_AngularDrag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Radius
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Height
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

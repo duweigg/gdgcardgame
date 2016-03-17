@@ -29,9 +29,12 @@ public class turns_manager : MonoBehaviour {
     public int j;
 
     public bool gameisOver;
+    public GameObject GameOverText;
+    public Vector3 endPos;
 
 	GameManager _manager;
 
+    GUIStyle guiStyle = new GUIStyle();
 
 
 
@@ -39,14 +42,14 @@ public class turns_manager : MonoBehaviour {
 
 
 
-
-	public	void endturn(){
+    public	void endturn(){
         if (turn_count % 2 == 0) {
 
             turn_count++;
 
             _manager.resetSelected();
 
+            characterCount();
 
             StartCoroutine(startenemyturn());
         }
@@ -188,14 +191,21 @@ public class turns_manager : MonoBehaviour {
     }
 
 
+    void OnGUI() {
+        guiStyle.fontSize = 32; //change the font size
+        guiStyle.normal.textColor = Color.red;
+        if (gameisOver) {
+            GUI.Label(new Rect(Screen.width / 2 - 100, Screen.height / 2 -50 , 100, 50), "GAME OVER!",guiStyle);
+        }
+    }
 
 
-	// Use this for initialization
-	void Start () {
+
+    // Use this for initialization
+    void Start () {
 		_manager = this.GetComponent<GameManager>();
         gameisOver = false;
         startturn ();
-        
 	}
 
     // Update is called once per frame
