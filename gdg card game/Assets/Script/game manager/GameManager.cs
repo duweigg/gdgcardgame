@@ -84,6 +84,9 @@ public class GameManager : MonoBehaviour {
 	public bool debug;
 	public GameObject debugObj;
 
+    public GameObject mainUnit;
+    public float summonDistance;
+
     //assign character to variable _char from the card.
     public void _getchar1(GameObject character) {
         _char = Instantiate(character, position, Quaternion.identity) as GameObject;
@@ -91,6 +94,7 @@ public class GameManager : MonoBehaviour {
             _char.transform.parent = Class1.transform;
             if (_attributes == null) {
                 _attributes = _char.GetComponent<Stats>();
+                _char.transform.position = mainUnit.transform.position;
             }
         }
         resetSelected();
@@ -102,6 +106,7 @@ public class GameManager : MonoBehaviour {
             _char.transform.parent = Class2.transform;
             if (_attributes == null) {
                 _attributes = _char.GetComponent<Stats>();
+                _char.transform.position = mainUnit.transform.position;
             }
         }
         resetSelected();
@@ -113,6 +118,7 @@ public class GameManager : MonoBehaviour {
             _char.transform.parent = Class3.transform;
             if (_attributes == null) {
                 _attributes = _char.GetComponent<Stats>();
+                _char.transform.position = mainUnit.transform.position;
             }
         }
         resetSelected();
@@ -124,6 +130,7 @@ public class GameManager : MonoBehaviour {
             _char.transform.parent = Class4.transform;
             if (_attributes == null) {
                 _attributes = _char.GetComponent<Stats>();
+                _char.transform.position = mainUnit.transform.position;
             }
         }
         resetSelected();
@@ -135,6 +142,7 @@ public class GameManager : MonoBehaviour {
             _char.transform.parent = Class5.transform;
             if (_attributes == null) {
                 _attributes = _char.GetComponent<Stats>();
+                _char.transform.position = mainUnit.transform.position;
             }
         }
         resetSelected();
@@ -144,9 +152,17 @@ public class GameManager : MonoBehaviour {
     void placechar() {
         //character follow the mouse
         if (_char != null && _attributes.cost < resources) {
+
+            Position = mainUnit.transform.position + new Vector3(0, 0, 1); // position of the range
+            Move_range_indicator.transform.localScale = new Vector3(2 * summonDistance, 1, 2 * summonDistance); //size of the range
+            Move_range_indicator.transform.position = Position; //place the range
+            
+
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             Physics.Raycast(ray, out hitt, 100, layermask);
-            _char.transform.position = hitt.point;
+            if ((hitt.point - mainUnit.transform.position).magnitude < summonDistance) {
+                _char.transform.position = hitt.point;
+            }
 
             //if left mouse is clicked;
 			if (Input.GetMouseButtonDown(0)) {
@@ -165,7 +181,8 @@ public class GameManager : MonoBehaviour {
             }
             if (Input.GetMouseButton(1)) {
                 Destroy(_char);
-            }
+                Move_range_indicator.transform.position = new Vector3 (0,0,0);
+           }
         } else if (_attributes != null && _attributes.cost > resources) {
             //show warning and play sound effect
             Debug.Log("not enough resource");
@@ -378,11 +395,13 @@ public class GameManager : MonoBehaviour {
 
 		_manager = this.GetComponent<turns_manager>();
 
+        summonDistance = 25;
+
 	}
 
 
-	// Update is called once per frame
-	void Update () {
+    // Update is called once per frame
+    void Update () {
         _manager.checkEnd();
 
         if (_char != null) {
@@ -393,10 +412,6 @@ public class GameManager : MonoBehaviour {
 		if (turn_count % 2 == 0) {
 			selectChar ();
 		}
-
-		if (debug) {
-			selectedScript.attack_anim (debugObj);
-			//debug = !debug;
-		}
+        
 	}
 }
