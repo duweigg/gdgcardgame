@@ -2219,6 +2219,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e2a8eec17b692843b8a6dcdfa54c1b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ps1: {fileID: 0}
+  ps2: {fileID: 0}
   hp: 0
   maxhp: 0
   attack: 0
@@ -2256,8 +2258,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ready_to_move: 0
+  flag: 0
+  check: {x: 0, y: 0, z: 0}
+  endPoint: {x: 0, y: 0, z: 0}
   duration: 5
   isMoving: 0
+  layers:
+    serializedVersion: 2
+    m_Bits: 1024
+  layers2:
+    serializedVersion: 2
+    m_Bits: 8192
+  changePos: 0
 --- !u!120 &12081680
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -5526,6 +5538,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: duration
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: layers.m_Bits
+      value: 1024
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: layers2.m_Bits
+      value: 8192
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

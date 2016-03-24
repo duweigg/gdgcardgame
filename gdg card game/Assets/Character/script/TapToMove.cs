@@ -18,6 +18,9 @@ public class TapToMove : MonoBehaviour
 	Animator _char_animator;
     public RaycastHit hit;
     public LayerMask layers;
+	public LayerMask layers2;
+
+	public bool changePos;
 
     void Start()
     {
@@ -49,15 +52,18 @@ public class TapToMove : MonoBehaviour
             #endif
 
             //Check if the ray hits any collider
-            if (Physics.Raycast(ray, out hit,300, layers))
-            {
-                //set a flag to indicate to move the gameobject
-                flag = true;
-                //save the click / tap position
-                endPoint = hit.point;
-                //as we do not want to change the y axis value based on touch position, reset it to original y axis value
-                endPoint.y = yAxis;               
-            }
+			if (Physics.Raycast (ray, out hit, 300, layers2)) {
+				if (Physics.Raycast(ray, out hit,300, layers))
+				{
+					//set a flag to indicate to move the gameobject
+					flag = true;
+					//save the click / tap position
+					endPoint = hit.point;
+					//as we do not want to change the y axis value based on touch position, reset it to original y axis value
+					endPoint.y = yAxis;               
+				}
+			}
+
 
         }
         //check if the flag for movement is true and the current gameobject position is not same as the clicked / tapped position
