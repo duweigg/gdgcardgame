@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour {
     public GameObject _char = null;
     int layermask = 1 << 10;   //layer 10 is the teerain
 
+	public GameObject[] mana;
 
 
     int UIlayer = 1 << 5;
@@ -89,6 +90,10 @@ public class GameManager : MonoBehaviour {
 
 	public string str;
 	public int cardcount;
+
+	public int resourceimages;
+	public GameObject manaImage;
+	public GameObject panel;
 
     //assign character to variable _char from the card.
     public void _getchar1(GameObject character) {
@@ -417,6 +422,25 @@ public class GameManager : MonoBehaviour {
 
 		for (i=0;i<5;i++){
 			pos[i] = new Vector2 ((i+4) * Screen.width/12, 0);
+		}
+
+		i = 0;
+		resourceimages = 0;
+		while (mana [i] != null&&i<20) {
+			i++;
+			resourceimages++;
+		}
+
+
+		for (i=resources;i>0;i--){
+			if (mana [i] != null) {
+				mana [i].transform.localPosition = new Vector2 (-200 * i - 150, 0);
+			} else {
+				GameObject image = Instantiate (manaImage) as GameObject;
+				image.transform.SetParent(panel.transform);
+				image.transform.localPosition = new Vector2 (-200 * i - 150, 0);
+				mana [i] = image;
+			}
 		}
 
 		arrangeCards ();
