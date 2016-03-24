@@ -1093,6 +1093,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 444062}
   - 95: {fileID: 9514566}
+  - 114: {fileID: 11407710}
   m_Layer: 0
   m_Name: sword
   m_TagString: Untagged
@@ -2237,6 +2238,42 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11407710
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 192944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e2a8eec17b692843b8a6dcdfa54c1b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 0
+  maxhp: 0
+  attack: 0
+  cost: 0
+  currentattack: 0
+  critchance: 0
+  attackrange: 0
+  distance: 0
+  attackerRange: 0
+  finaldamage: 0
+  armor: 0
+  healval: 0
+  randomroll: 0
+  isEnemy: 0
+  attackerIsEnemy: 0
+  hasAttacked: 0
+  hasMoved: 0
+  turnEnded: 0
+  attacker: {fileID: 0}
+  charClass: {fileID: 0}
+  tm: {fileID: 0}
+  debugattack: 0
+  debughit: 0
+  debugheal: 0
+  isSelected: 0
 --- !u!137 &13718878
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

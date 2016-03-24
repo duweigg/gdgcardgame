@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour {
 
     //for raycast place character
     public Camera cam;
+    public Camera cam_2;
     RaycastHit hitt = new RaycastHit(); //to get the point of mouse in 3D world
     public GameObject _char = null;
     int layermask = 1 << 10;   //layer 10 is the teerain
@@ -94,6 +95,8 @@ public class GameManager : MonoBehaviour {
 	public int resourceimages;
 	public GameObject manaImage;
 	public GameObject panel;
+
+    public AudioListener[] list;
 
     //assign character to variable _char from the card.
     public void _getchar1(GameObject character) {
@@ -395,6 +398,7 @@ public class GameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        resourcesmax = 1;
 
 		for (i = 1; i <= 20; i++) {
 			string str = "Button " + i;
@@ -429,26 +433,28 @@ public class GameManager : MonoBehaviour {
 			pos[i] = new Vector2 ((i+4) * Screen.width/12, 0);
 		}
 
-		i = 0;
-		resourceimages = 0;
-		while (mana [i] != null&&i<20) {
-			i++;
-			resourceimages++;
-		}
-
-
-		for (i=resources;i>0;i--){
-			if (mana [i] != null) {
-				mana [i].transform.localPosition = new Vector2 (-200 * i - 150, 0);
-			} else {
-				GameObject image = Instantiate (manaImage) as GameObject;
-				image.transform.SetParent(panel.transform);
-				image.transform.localPosition = new Vector2 (-200 * i - 150, 0);
-				mana [i] = image;
-			}
-		}
-
 		arrangeCards ();
+
+        i = 0;
+        resourceimages = 0;
+        while (mana[i] != null && i < 20) {
+            i++;
+            resourceimages++;
+        }
+
+
+        for (i = resources-1; i >= 0; i--) {
+            if (mana[i] != null) {
+                mana[i].transform.localPosition = new Vector2 (-950 + 300*(i), 0);
+            }
+            else {
+                GameObject image = Instantiate(manaImage) as GameObject;
+                image.transform.SetParent(panel.transform);
+                image.transform.localScale= new Vector3 (3, 9, 0);
+                image.transform.localPosition = new Vector2(-950 + 100 * (i), 0);
+                mana[i] = image;
+            }
+        }
 
         if (_char != null) {
             placechar();
