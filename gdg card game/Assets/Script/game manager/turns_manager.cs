@@ -38,9 +38,7 @@ public class turns_manager : MonoBehaviour {
 
 
 
-
-
-
+    
 
     public	void endturn(){
         if (turn_count % 2 == 0) {

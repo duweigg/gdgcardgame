@@ -164,7 +164,7 @@ public class GameManager : MonoBehaviour {
         //character follow the mouse
         if (_char != null && _attributes.cost < resources) {
 
-            Position = mainUnit.transform.position + new Vector3(0, 0, 1); // position of the range
+            Position = mainUnit.transform.position + new Vector3(0, -.45f, 1); // position of the range
             Move_range_indicator.transform.localScale = new Vector3(2 * summonDistance, 1, 2 * summonDistance); //size of the range
             Move_range_indicator.transform.position = Position; //place the range
             
@@ -178,17 +178,26 @@ public class GameManager : MonoBehaviour {
             //if left mouse is clicked;
 			if (Input.GetMouseButtonDown(0)) {
                 //to place the character
-                t2 = Time.frameCount;
-                _char = null;
-                _attributes = null;
-                _button.transform.position = newPos;
+                if (Physics.Raycast(ray, out hitt, 100, layermask)) {
 
-                for (i = 0; i < 5; i++) {
-                    if (_handcards[i] == _button) {
-                        _handcards[i] = null;
+                    t2 = Time.frameCount;
+                    _char = null;
+                    _attributes = null;
+                    _button.transform.position = newPos;
+
+                    Move_range_indicator.transform.position = new Vector3(0, 0, 0);
+
+                    for (i = 0; i < 5; i++) {
+                        if (_handcards[i] == _button) {
+                            _handcards[i] = null;
+                        }
                     }
+                    arrangeCards();
                 }
-                arrangeCards();
+                else {
+                    Destroy(_char);
+                    Move_range_indicator.transform.position = new Vector3(0, 0, 0);
+                }
             }
             if (Input.GetMouseButton(1)) {
                 Destroy(_char);
