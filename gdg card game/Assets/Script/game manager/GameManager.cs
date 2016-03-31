@@ -166,7 +166,7 @@ public class GameManager : MonoBehaviour {
 
             Position = mainUnit.transform.position + new Vector3(0, -.45f, 1); // position of the range
             Move_range_indicator.transform.localScale = new Vector3(2 * summonDistance, 1, 2 * summonDistance); //size of the range
-            Move_range_indicator.transform.position = Position; //place the range
+            Move_range_indicator.transform.position = Position ; //place the range
             
 
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
@@ -177,14 +177,21 @@ public class GameManager : MonoBehaviour {
 
             //if left mouse is clicked;
 			if (Input.GetMouseButtonDown(0)) {
+<<<<<<< HEAD
                 //to place the character
                 if (Physics.Raycast(ray, out hitt, 100, layermask)) {
 
+=======
+                if (Physics.Raycast(ray, out hitt, 100, layer2)&&Physics.Raycast(ray, out hitt,100,layermask))
+                {
+                    //to place the character
+>>>>>>> origin/temp
                     t2 = Time.frameCount;
                     _char = null;
                     _attributes = null;
                     _button.transform.position = newPos;
 
+<<<<<<< HEAD
                     Move_range_indicator.transform.position = new Vector3(0, 0, 0);
 
                     for (i = 0; i < 5; i++) {
@@ -198,6 +205,25 @@ public class GameManager : MonoBehaviour {
                     Destroy(_char);
                     Move_range_indicator.transform.position = new Vector3(0, 0, 0);
                 }
+=======
+                    for (i = 0; i < 5; i++)
+                    {
+                        if (_handcards[i] == _button)
+                        {
+                            _handcards[i] = null;
+                        }
+
+                    }
+                    arrangeCards();
+                    Move_range_indicator.transform.position = new Vector3(0, 0, 0);
+                }
+                else
+                {
+                    Destroy(_char);
+                    Move_range_indicator.transform.position = new Vector3(0, 0, 0);
+                }
+                
+>>>>>>> origin/temp
             }
             if (Input.GetMouseButton(1)) {
                 Destroy(_char);
@@ -236,7 +262,7 @@ public class GameManager : MonoBehaviour {
                         if (selectedScript.hasMoved == false) {
                             Position = selected.transform.position + new Vector3(0, -2.5f, 0); // position of the range
                             Move_range_indicator.transform.localScale = new Vector3(2 * maxMove, 1, 2 * maxMove); //size of the range
-                            Move_range_indicator.transform.position = Position; //place the range
+                            Move_range_indicator.transform.position = Position + new Vector3(0,4,0); //place the range
                         }
                         else {
                             Move_range_indicator.transform.position = new Vector3(0, 0, 0);

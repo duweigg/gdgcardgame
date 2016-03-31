@@ -24,6 +24,12 @@ public class AI : MonoBehaviour {
 
     public GameObject collided;
 
+    Ray ray;
+    RaycastHit hit = new RaycastHit();
+    int layermask = 1 << 14;
+    public Vector3 entrancePos;
+    public GameObject entrance;
+
 
     // Use this for initialization
     void Start() {
@@ -32,6 +38,8 @@ public class AI : MonoBehaviour {
         maxdist = 15;
         speed = 0.2f;
         isMoving = true;
+        entrance = GameObject.Find("Entrance");
+        entrancePos = entrance.transform.position;
     }
 
     // Update is called once per frame
@@ -54,21 +62,33 @@ public class AI : MonoBehaviour {
         }
         targetpos = closest.transform.position;
 
-        transform.LookAt(targetpos);
+        GameObject box = GameObject.Find("Cube");
+        var collider = box.GetComponent<BoxCollider>();
+        var collider2 = entrance.GetComponent<BoxCollider>();
+        if (!collider.bounds.Contains(targetpos))
+        {   if(collider2.bounds.Contains(transform.position));
+            {
+                targetpos = entrancePos;
+            }
+        }
+        
+        transform.LookAt(new Vector3(targetpos.x, 67, targetpos.z));
+                
+
         Vector3 castDirection = transform.localRotation * new Vector3(10, 0, 0);
         
         //move to within 4 units
         if (mindist > 4) {
             if (mindist < maxdist + 4) {
                 targetpos = Vector3.MoveTowards(transform.position, targetpos, (mindist - attackdist));
-                targetpos = new Vector3(targetpos.x, 70, targetpos.z);
+                targetpos = new Vector3(targetpos.x, 67, targetpos.z);
                 while (targetpos != transform.position && distTravelled < 15) {
                     if (isMoving && distTravelled < 15) {
                         isSelected = true;
                         Vector3 deltaDist = transform.position - Vector3.MoveTowards(transform.position, targetpos, speed);
                         distTravelled = distTravelled + deltaDist.magnitude;
                         transform.position = Vector3.MoveTowards(transform.position, targetpos, speed);
-                        transform.position = new Vector3(transform.position.x, 70, transform.position.z);
+                        transform.position = new Vector3(transform.position.x, 67, transform.position.z);
                     }
                     yield return null;
                 }
@@ -76,14 +96,14 @@ public class AI : MonoBehaviour {
             }
             else {
                 targetpos = Vector3.MoveTowards(transform.position, targetpos, maxdist);
-                targetpos = new Vector3(targetpos.x, 70, targetpos.z);
+                targetpos = new Vector3(targetpos.x, 67, targetpos.z);
                 while (targetpos != transform.position && distTravelled < 15) {
                     if (isMoving && distTravelled < 15) {
                         isSelected = true;
                         Vector3 deltaDist = transform.position - Vector3.MoveTowards(transform.position, targetpos, speed);
                         distTravelled = distTravelled + deltaDist.magnitude;
                         transform.position = Vector3.MoveTowards(transform.position, targetpos, speed);
-                        transform.position = new Vector3 (transform.position.x, 70, transform.position.z);
+                        transform.position = new Vector3 (transform.position.x, 67, transform.position.z);
                     }
                     yield return null;
                 }
