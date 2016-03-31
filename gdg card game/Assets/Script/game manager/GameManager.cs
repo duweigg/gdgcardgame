@@ -177,20 +177,31 @@ public class GameManager : MonoBehaviour {
 
             //if left mouse is clicked;
 			if (Input.GetMouseButtonDown(0)) {
-                //to place the character
-                t2 = Time.frameCount;
-                _char = null;
-                _attributes = null;
-                _button.transform.position = newPos;
+                if (Physics.Raycast(ray, out hitt, 100, layer2)&&Physics.Raycast(ray, out hitt,100,layermask))
+                {
+                    //to place the character
+                    t2 = Time.frameCount;
+                    _char = null;
+                    _attributes = null;
+                    _button.transform.position = newPos;
 
-                for (i = 0; i < 5; i++) {
-                    if (_handcards[i] == _button) {
-                        _handcards[i] = null;
+                    for (i = 0; i < 5; i++)
+                    {
+                        if (_handcards[i] == _button)
+                        {
+                            _handcards[i] = null;
+                        }
+
                     }
-
+                    arrangeCards();
+                    Move_range_indicator.transform.position = new Vector3(0, 0, 0);
                 }
-                arrangeCards();
-                Move_range_indicator.transform.position = new Vector3(0, 0, 0);
+                else
+                {
+                    Destroy(_char);
+                    Move_range_indicator.transform.position = new Vector3(0, 0, 0);
+                }
+                
             }
             if (Input.GetMouseButton(1)) {
                 Destroy(_char);
