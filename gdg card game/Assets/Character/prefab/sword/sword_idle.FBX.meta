@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 99a81894a92038344ac6ca041c600a26
-timeCreated: 1458212537
+guid: 4356b244c7d5aed4ba426eb9a61707d9
+timeCreated: 1459439790
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -187,7 +187,7 @@ ModelImporter:
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
-    animationCompression: 3
+    animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -197,8 +197,8 @@ ModelImporter:
     - serializedVersion: 16
       name: idle
       takeName: Take 001
-      firstFrame: 3
-      lastFrame: 50
+      firstFrame: 4
+      lastFrame: 55
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -513,7 +513,7 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
-    hasTranslationDoF: 1
+    hasTranslationDoF: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 2
   humanoidOversampling: 1
