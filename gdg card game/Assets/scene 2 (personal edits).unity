@@ -1772,7 +1772,7 @@ MonoBehaviour:
   Classlist:
   - {fileID: 995496108}
   - {fileID: 626577533}
-  - {fileID: 0}
+  - {fileID: 1871358206}
   - {fileID: 538773180}
   - {fileID: 560943090}
   EnemyClasslist:
@@ -7261,6 +7261,10 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1866291627}
+--- !u!1 &1871358206 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 192944, guid: 3f575eb8c1228d441bdf323ac577a612, type: 2}
+  m_PrefabInternal: {fileID: 1337238417}
 --- !u!1 &1901362414
 GameObject:
   m_ObjectHideFlags: 0
