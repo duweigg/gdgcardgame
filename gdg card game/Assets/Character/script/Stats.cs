@@ -41,12 +41,18 @@ public class Stats : MonoBehaviour {
 	public bool isSelected;
     private int i;
 
+    public float t;
+    public bool killswitch;
+
 	void Start () {
 		//Do we reduce the summon points here or in game controller?
 		//Searches for the class of the new unit
 		charClass = transform.parent.gameObject;
-		StatBlock statScript = charClass.GetComponent<StatBlock> ();
+        Debug.Log(transform.name);
+        StatBlock statScript = charClass.GetComponent<StatBlock> ();
+        
 		//can someone get all of these at once?
+
 		hp= statScript.HP ();
 		maxhp = statScript.maxHP ();
 		attack = statScript.attack ();
@@ -54,6 +60,7 @@ public class Stats : MonoBehaviour {
 		attackrange = statScript.attackRange ();
 		armor = statScript.armor();
 		healval = statScript.heal ();
+        Debug.Log(transform.name);
         tm = FindObjectOfType<turns_manager>();
 	}
 	
@@ -83,6 +90,12 @@ public class Stats : MonoBehaviour {
 			heal ();
 			debugheal=false;
 		}
+
+        if (killswitch && t + 0.5 < Time.time)
+        {
+            killswitch = false;
+            death();
+        } 
 		
 	}
 	
@@ -179,7 +192,8 @@ public class Stats : MonoBehaviour {
 			}
 			//kills character if neccesary
 			if (hp <= 0) {
-				death ();
+                t = Time.time;
+                killswitch = true;
 			}
 		} else {
 			//Undo the attacking section so the unit can be selected again
@@ -204,6 +218,7 @@ public class Stats : MonoBehaviour {
 	
 	void resetAttacker(){
 		attacker.tag = "Untagged" ;
+        Debug.Log("1");
 		attacker = null;
 	}
 	

@@ -32,6 +32,12 @@ public class turns_manager : MonoBehaviour {
     public GameObject GameOverText;
     public Vector3 endPos;
 
+    public float t;
+    public bool endingturn;
+    public bool bossdead;
+
+    public GameObject player;
+
 	GameManager _manager;
 
     GUIStyle guiStyle = new GUIStyle();
@@ -56,7 +62,9 @@ public class turns_manager : MonoBehaviour {
 	}
 
 	public void startturn(){
-		_manager.resources = ++_manager.resourcesmax;
+        if (_manager.resources<7) {
+            _manager.resources = ++_manager.resourcesmax;
+        }
 		_manager.drawcard ();
 		_manager.arrangeCards ();
 
@@ -126,8 +134,8 @@ public class turns_manager : MonoBehaviour {
 
 		if (turn_count % 4 == 0&&mlength<19) {
 			Vector2 randomVector = Random.insideUnitCircle*15;
-			position = new Vector3 (randomVector.x,0,randomVector.y);
-			position+= boss.transform.position;
+			position = new Vector3 (randomVector.x ,0, randomVector.y);
+			position = position + boss.transform.position;
 			randomroll= Random.value;
 			if (randomroll<=0.5f){
 				GameObject monster = Instantiate (monster1, position, Quaternion.identity) as GameObject;
@@ -156,7 +164,7 @@ public class turns_manager : MonoBehaviour {
 		}
 
 
-
+        t = Time.time;
 
 		startturn ();
 	}
@@ -193,9 +201,17 @@ public class turns_manager : MonoBehaviour {
 
     void OnGUI() {
         guiStyle.fontSize = 32; //change the font size
-        guiStyle.normal.textColor = Color.red;
+        guiStyle.normal.textColor = Color.white;
         if (gameisOver) {
             GUI.Label(new Rect(Screen.width / 2 - 100, Screen.height / 2 -50 , 100, 50), "GAME OVER!",guiStyle);
+        }
+        if (endingturn&&!gameisOver)
+        {
+            GUI.Label(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 50, 100, 50), "PLAYER TURN START", guiStyle);
+        }
+        if (bossdead)
+        {
+            GUI.Label(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 50, 100, 50), "You Won!", guiStyle);
         }
     }
 
@@ -210,6 +226,24 @@ public class turns_manager : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        
+        if (Time.time < t + 1)
+        {
+            endingturn = true;
+        }
+        else
+        {
+            endingturn = false;
+        }
+
+        if (player == null)
+        {
+            gameisOver = true;
+        }
+
+        if (boss == null)
+        {
+            bossdead = true;
+        }
+
     }
 }

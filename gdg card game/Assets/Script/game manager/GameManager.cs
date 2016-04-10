@@ -95,6 +95,7 @@ public class GameManager : MonoBehaviour {
 	public int resourceimages;
 	public GameObject manaImage;
 	public GameObject panel;
+    public GameObject player;
 
     public AudioListener[] list;
 
@@ -255,7 +256,17 @@ public class GameManager : MonoBehaviour {
             }
             //deselects character
             if (!isMoving && Input.GetMouseButtonDown(1) && selectedScript != null) {
-				setPosition ();
+                if (selectedScript.hasMoved)
+                {
+                    setPosition();
+                } else
+                if (selectedScript != null)
+                {
+                    resetSelected();
+                }
+                {
+                    
+                }
             }
 
             if (selected != null) {
@@ -312,20 +323,36 @@ public class GameManager : MonoBehaviour {
                     Target = hit.collider.gameObject;
                     targetScript = Target.GetComponent<Stats>();
                     selectedScript.hit();
+
+
+                    
+
                     if (targetScript.isAttacked()) {
+
+                        //things to do look at target
+                        //turn off attack anim after 1
+
+                        selectedScript.transform.LookAt(Target.transform.position);
+
                         selectedScript.hasMoved = true;
 
                         //edited by duwei
                         anim = selected.GetComponent<Animator>();
+
+                        Debug.Log(anim);
+
                         if (anim != null) {
-                            anim.SetInteger("IsAtt", 1);
-                            anim.SetInteger("IsAtt", 0);
+                            anim.SetInteger("IsAtt",1);
+                            Debug.Log(anim.GetInteger("IsAtt"));
+                            StopAttack sa = selected.AddComponent<StopAttack>();
                         }
 
                         //edited by duwei 1 line
                         Position = selected.transform.position + new Vector3(0, 0, 1);
 
+                        
                         resetSelected();
+
                     } else {
                         selectedScript.hasAttacked = false;
                     }
@@ -478,5 +505,6 @@ public class GameManager : MonoBehaviour {
 			selectChar ();
 		}
         
-	}
+
+    }
 }
