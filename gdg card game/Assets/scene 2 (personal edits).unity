@@ -1705,6 +1705,7 @@ MonoBehaviour:
   resourceimages: 0
   manaImage: {fileID: 318683480}
   panel: {fileID: 1580700506}
+  player: {fileID: 0}
   list: []
 --- !u!4 &454098995
 Transform:
@@ -5663,7 +5664,6 @@ Canvas:
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -5907,7 +5907,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1406015162}
   m_LocalRotation: {x: 0.52086234, y: 0, z: 0, w: 0.8536407}
-  m_LocalPosition: {x: 25.674, y: 72.7872, z: 34.4894}
+  m_LocalPosition: {x: 25.674, y: 92.89, z: 85.98}
   m_LocalScale: {x: 0.087051906, y: 0.08705199, z: 0.08705199}
   m_Children: []
   m_Father: {fileID: 0}

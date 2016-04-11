@@ -42,7 +42,7 @@ public class TapToMove : MonoBehaviour
         {
             //declare a variable of RaycastHit struct
             //Create a Ray on the tapped / clicked position
-            Ray ray;
+			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             //for unity editor
             #if UNITY_EDITOR
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
